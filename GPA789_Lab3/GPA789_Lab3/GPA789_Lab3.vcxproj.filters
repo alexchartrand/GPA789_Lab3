@@ -62,6 +62,18 @@
     <ClCompile Include="QPathBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QAbstractWorkStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QInputWorkStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QOutputWorkStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QTransformWorkStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GPA789_Lab3.h">
@@ -74,6 +86,18 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="QInteractiveGraphicsView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QAbstractWorkStation.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QInputWorkStation.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QOutputWorkStation.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QTransformWorkStation.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

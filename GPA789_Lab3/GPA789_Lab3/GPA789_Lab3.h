@@ -7,6 +7,7 @@
 #include "QInteractiveGraphicsView.h"
 #include <qgraphicsscene>
 #include <qgraphicsitem>
+#include <qtimer>
 
 class GPA789_Lab3 : public QMainWindow
 {
@@ -18,6 +19,12 @@ public:
 
 private:
 	Ui::GPA789_Lab3Class ui;
+	QInteractiveGraphicsView * mView;
+	QGraphicsScene * mScene;
+	QTimer * mRepaintTimer;
+
+private slots:
+	void repaintTick();
 };
 
 #endif // GPA789_LAB3_H
