@@ -13,8 +13,3 @@ QTransformWorkStation::~QTransformWorkStation()
 
 }
 
-
-void QTransformWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-	painter->drawRoundRect(QRect(mPos, mSize));
-}

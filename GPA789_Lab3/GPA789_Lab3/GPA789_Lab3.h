@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_GPA789_Lab3.h"
+#include "QPathBuilder.h"
 
 #include "QInteractiveGraphicsView.h"
 #include <qgraphicsscene>
@@ -22,6 +23,7 @@ private:
 	QInteractiveGraphicsView * mView;
 	QGraphicsScene * mScene;
 	QTimer * mRepaintTimer;
+	QPathBuilder * pathBuilder;
 
 private slots:
 	void repaintTick();

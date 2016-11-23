@@ -74,6 +74,39 @@
     <ClCompile Include="QTransformWorkStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WorkMaterialTracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_WorkMaterialTracker.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_WorkMaterialTracker.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QAbstractWorkStation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QAbstractWorkStation.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QInputWorkStation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QInputWorkStation.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QTransformWorkStation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QTransformWorkStation.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QOutputWorkStation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QOutputWorkStation.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GPA789_Lab3.h">
@@ -98,6 +131,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="QTransformWorkStation.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WorkMaterialTracker.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

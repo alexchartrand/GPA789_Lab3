@@ -5,13 +5,13 @@
 
 class QTransformWorkStation : public QAbstractWorkStation
 {
+	Q_OBJECT
 
 public:
 	QTransformWorkStation(int x, int y, int width, int height, QWidget *parent = nullptr);
 	~QTransformWorkStation();
 
-	QRectF boundingRect() const override { return QRect(mPos, mSize); }
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
 private:
 	
 };

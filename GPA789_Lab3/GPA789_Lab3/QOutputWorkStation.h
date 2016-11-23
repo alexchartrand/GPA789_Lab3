@@ -5,6 +5,7 @@
 
 class QOutputWorkStation : public QAbstractWorkStation
 {
+	Q_OBJECT
 
 public:
 	QOutputWorkStation(int x, int y, int width, int height, QWidget *parent = nullptr);
