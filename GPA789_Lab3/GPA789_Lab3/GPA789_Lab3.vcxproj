@@ -211,6 +211,7 @@
     <ClCompile Include="QOutputWorkStation.cpp" />
     <ClCompile Include="QPathBuilder.cpp" />
     <ClCompile Include="QTransformWorkStation.cpp" />
+    <ClCompile Include="WorkingMaterial.cpp" />
     <ClCompile Include="WorkMaterialTracker.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_GPA789_Lab3.h" />
+    <ClInclude Include="WorkingMaterial.h" />
     <CustomBuild Include="WorkMaterialTracker.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing WorkMaterialTracker.h...</Message>

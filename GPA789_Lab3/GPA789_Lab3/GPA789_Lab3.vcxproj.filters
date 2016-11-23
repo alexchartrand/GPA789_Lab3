@@ -107,6 +107,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_QOutputWorkStation.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="WorkingMaterial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GPA789_Lab3.h">
@@ -142,6 +145,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="QPathBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkingMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

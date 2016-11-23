@@ -2,20 +2,25 @@
 #define WORKMATERIALTRACKER_H
 
 #include <QObject>
-#include <QGraphicsEllipseItem>
+#include <qgraphicsscene>
+
+#include "WorkingMaterial.h"
 
 class WorkMaterialTracker : public QObject
 {
 	Q_OBJECT
 
 public:
-	WorkMaterialTracker(QObject *parent);
+	WorkMaterialTracker(QGraphicsScene & const scene) : mScene{ scene } {}
 	~WorkMaterialTracker();
 
-	void update();
+	void updateMaterial();
+	void addMaterial(WorkingMaterial * material);
+	void deleteMaterial(WorkingMaterial * material);
 
 private:
-	QList<QGraphicsEllipseItem *> materialList;
+	QList<WorkingMaterial *> mMaterialList;
+	QGraphicsScene & const mScene;
 };
 
 #endif // WORKMATERIALTRACKER_H
