@@ -2,7 +2,8 @@
 #define QABSTRACTWORKSTATION_H
 
 #include <QGraphicsItem>
-#include "WorkMaterialTracker.h"
+
+class WorkMaterialTracker;
 
 class QAbstractWorkStation : public QObject,  public QGraphicsItem
 {
@@ -31,7 +32,6 @@ public:
 protected:
 	QSizeF mSize;
 	QPointF mPos;
-	QString mName;
 	bool mRunning;
 	int mWorkingSpeed; // Delta t in ms
 	WorkMaterialTracker * mTracker;
@@ -41,6 +41,7 @@ protected slots:
 	virtual void handleWorkingMaterial() {}
 
 private:
+	QString mName;
 };
 
 #endif // QABSTRACTWORKSTATION_H

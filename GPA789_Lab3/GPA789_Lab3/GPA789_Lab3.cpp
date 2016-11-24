@@ -12,7 +12,7 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	ui.setupUi(this);
 
 	mScene = new QGraphicsScene();
-	mScene->addItem(new QInputWorkStation(0, 50, 100, 300));
+	//mScene->addItem(new QInputWorkStation(0, 50, 100, 300));
 	mView = new QInteractiveGraphicsView(mScene);
 
 	QBrush greenBrush(Qt::green);

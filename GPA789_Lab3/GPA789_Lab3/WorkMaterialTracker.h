@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <qgraphicsscene>
+#include <QList>
 
 #include "WorkingMaterial.h"
 
@@ -11,7 +12,7 @@ class WorkMaterialTracker : public QObject
 	Q_OBJECT
 
 public:
-	WorkMaterialTracker(QGraphicsScene & const scene) : mScene{ scene } {}
+	WorkMaterialTracker(QGraphicsScene * scene) : mScene{ scene } {}
 	~WorkMaterialTracker();
 
 	void updateMaterial();
@@ -20,7 +21,7 @@ public:
 
 private:
 	QList<WorkingMaterial *> mMaterialList;
-	QGraphicsScene & const mScene;
+	QGraphicsScene * mScene;
 };
 
 #endif // WORKMATERIALTRACKER_H

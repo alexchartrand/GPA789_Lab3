@@ -2,6 +2,8 @@
 
 #include <QPainter>
 
+#include "WorkMaterialTracker.h"
+
 QAbstractWorkStation::QAbstractWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
 	: QGraphicsItem(), mSize(width, height), mTracker{ tracker }
 {

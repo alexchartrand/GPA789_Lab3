@@ -39,5 +39,5 @@ void QInputWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 void QInputWorkStation::handleWorkingMaterial()
 {
 	// Create new material
-	mTracker->addMaterial(new WorkingMaterial());
+	//mTracker->addMaterial(new WorkingMaterial());
 }

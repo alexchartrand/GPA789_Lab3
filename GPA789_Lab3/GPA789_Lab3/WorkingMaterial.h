@@ -3,25 +3,26 @@
 
 #include <QGraphicsItem>
 
-#include "QPathBuilder.h"
+#include "Path.h"
 
 class WorkingMaterial : public QGraphicsItem
 {
 public:
 	WorkingMaterial() = delete;
-	WorkingMaterial(QPathBuilder * path, int radius, Qt::GlobalColor color);
+	WorkingMaterial(Path * path, int radius, Qt::GlobalColor color);
 	~WorkingMaterial();
 
 	void updatePos();
 
-	QRectF boundingRect() const override { return QRect(mPos, QSize(mRadius, mRadius)); }
+	QRectF boundingRect() const override { return QRectF(mPos, QSize(mRadius, mRadius)); }
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-	QPoint mPos;
+	QPointF mPos;
 	int mRadius;
+	int mCurrentPoint;
 	Qt::GlobalColor mColor;
-	QPathBuilder * mCurrentPath;
+	Path * mCurrentPath;
 };
 
 #endif // WORKINGMATERIAL_H

@@ -2,9 +2,9 @@
 
 #include <qpainter>
 
-WorkingMaterial::WorkingMaterial(QPathBuilder * path, int radius, Qt::GlobalColor color) : mCurrentPath{ path }, mRadius{ radius }, mColor{ color }
+WorkingMaterial::WorkingMaterial(Path * path, int radius, Qt::GlobalColor color) : mCurrentPath{ path }, mRadius{ radius }, mColor{ color }, mCurrentPoint{0}
 {
-	mPos = mCurrentPath->entryPoint().toPoint();
+	mPos = mCurrentPath->getPoint(mCurrentPoint);
 }
 
 WorkingMaterial::~WorkingMaterial()
