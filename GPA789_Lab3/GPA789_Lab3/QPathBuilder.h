@@ -9,6 +9,8 @@
 #include <QRectF>
 #include <QPolygonF>
 
+#include <QGraphicsItem>
+
 #include <QPixmap>
 #include <QPainter>
 
@@ -67,7 +69,7 @@
 ///  - création d'une figure géométrique correspondant au trajet avec une épaisseur (création d'un polygon) : shape()
 //  - ***dessin cosmétique du trajet***todo (dot or line with % start offset)
 ///
-class QPathBuilder
+class QPathBuilder 
 {
 public:
 	// Class default function
@@ -105,16 +107,16 @@ public:
 	QPointF exitPoint() const { return mPoints.last(); }
 	
 	/// \brief Retourne la liste des points définissant le trajet.
-	QList<QPointF> const & points() const { return mPoints; }
+	QList<QPointF> points() const { return mPoints; } // there was a const ref (const &)
 	/// \brief Retourne la liste de vecteurs définissant le trajet.
 	/// \details La liste des vecteurs est définie par inchaque vecteur par un QPair<qreal, qreal> qui représente le déplacement selon le point précédent. 
 	/// Les constituants du QPair sont la longueur du segment (first) et l'angle du segement en radians (second).
 	/// Il est important de noter que la longueur de la liste de vectors a une longueur de count() - 1.
 	/// Finalement, n'oublions pas qu'un trajet débute toujours à l'origine (0, 0).
-	QList<QPair<qreal, qreal>> const & vectors() const { return mVectors; }
+	QList<QPair<qreal, qreal>> vectors() const { return mVectors; } // there was a const ref (const &)
 	
 	/// \brief Retourne la boîte capable du trajet.
-	QRectF const & boundingBox() const { return mBoundingBox; }
+	QRectF boundingBox() const { return mBoundingBox; } // there was a const ref (const &)
 
 	/// \brief Retourne un figure géométrique correspondant au trajet ayant une épaisseur.
 	/// \details Cette fonction crée un polygone correspondant au trajet selon une épaisseur donnée. Le polygon créé peut être invalide si il est concave. Aussi, un polygone ayant un chevauchement donne un résultat suprenant s'il est dessiné tel quel (voir la définition de void QPainter::drawPolygon et plus spécifiquement du paramètre Qt::FillRule fillRule).

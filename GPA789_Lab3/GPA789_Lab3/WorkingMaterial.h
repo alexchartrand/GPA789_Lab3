@@ -9,7 +9,7 @@ class WorkingMaterial : public QGraphicsItem
 {
 public:
 	WorkingMaterial() = delete;
-	WorkingMaterial(QPathBuilder * path, int radius, Qt::GlobalColor color) { mCurrentPath = path; mRadius = radius; mColor = color; }
+	WorkingMaterial(QPathBuilder * path, int radius, Qt::GlobalColor color);
 	~WorkingMaterial();
 
 	void updatePos();

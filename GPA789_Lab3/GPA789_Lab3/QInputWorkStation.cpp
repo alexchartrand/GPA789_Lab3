@@ -1,10 +1,11 @@
 #include "QInputWorkStation.h"
+#include "WorkingMaterial.h"
 
 #include <QtCore\qmath.h>
 #include <qpainter>
 
-QInputWorkStation::QInputWorkStation(int x, int y, int width, int height, QWidget *parent)
-	: QAbstractWorkStation(x, y, width, height), mProgressBarSize(qFloor(0.8*width), 10), mProgressBarVisible{true}
+QInputWorkStation::QInputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
+	: QAbstractWorkStation(x, y, width, height, tracker), mProgressBarSize(qFloor(0.8*width), 10), mProgressBarVisible{true}
 {
 	mProductionTimer = new QTimer;
 
@@ -27,8 +28,8 @@ void QInputWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 	QPoint progressBarPos(mPos.x() + qFloor(0.1*mProgressBarSize.width()), mPos.y() - 15);
 
 	painter->setPen(QPen(Qt::gray, 2));
-	painter->drawRoundRect(QRect(progressBarPos, mProgressBarSize), 15, 15);
-	painter->fillRect(QRect(progressBarPos.x(), progressBarPos.y(), qCeil(mProgressBarSize.width()*completion), mProgressBarSize.height()), QBrush(Qt::green, Qt::SolidPattern));
+	painter->drawRoundRect(QRectF(progressBarPos, mProgressBarSize), 15, 15);
+	painter->fillRect(QRectF(progressBarPos.x(), progressBarPos.y(), mProgressBarSize.width()*completion, mProgressBarSize.height()), QBrush(Qt::green, Qt::SolidPattern));
 	}
 
 	QAbstractWorkStation::paint(painter, option, widget);
@@ -38,4 +39,5 @@ void QInputWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 void QInputWorkStation::handleWorkingMaterial()
 {
 	// Create new material
+	mTracker->addMaterial(new WorkingMaterial());
 }

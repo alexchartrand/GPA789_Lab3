@@ -2,6 +2,7 @@
 #define QINPUTWORKSTATION_H
 
 #include "QAbstractWorkStation.h"
+#include "WorkMaterialTracker.h"
 #include <qtimer>
 
 class QInputWorkStation : public QAbstractWorkStation
@@ -9,7 +10,7 @@ class QInputWorkStation : public QAbstractWorkStation
 	Q_OBJECT
 
 public:
-	QInputWorkStation(int x, int y, int width, int height, QWidget *parent = nullptr);
+	QInputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	~QInputWorkStation();
 
 	void enableProgressBar(bool en) { mProgressBarVisible = en; }
@@ -18,8 +19,10 @@ public:
 
 private:
 	QTimer * mProductionTimer;
-	QSize mProgressBarSize;
+	QSizeF mProgressBarSize;
 	bool mProgressBarVisible;
+
+	
 
 protected slots:
 	virtual void handleWorkingMaterial() override;
