@@ -8,7 +8,7 @@
 #include "QPathBuilder.h"
 #include "QAbstractWorkStation.h"
 
-class Path
+class Path 
 {
 public:
 	Path() = delete;
@@ -18,6 +18,7 @@ public:
 	void setPath(QPathBuilder const & pathBuilder);
 	void connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end);
 	QPointF getPoint(int i) { return mPoints.at(i); }
+	QPolygonF const & getShape() { return mShape; }
 
 private:
 	QList<QPointF> mPoints;

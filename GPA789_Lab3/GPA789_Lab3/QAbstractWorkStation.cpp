@@ -9,7 +9,7 @@ QAbstractWorkStation::QAbstractWorkStation(int x, int y, int width, int height, 
 {
 	setByCenter(QPoint(x, y));
 	mColor = Qt::blue;
-	mWorkingSpeed = 1000;
+	mWorkingSpeed = 3000;
 }
 
 QAbstractWorkStation::~QAbstractWorkStation()

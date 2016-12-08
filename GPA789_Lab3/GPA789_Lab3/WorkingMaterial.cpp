@@ -2,7 +2,7 @@
 
 #include <qpainter>
 
-WorkingMaterial::WorkingMaterial(Path * path, int radius, Qt::GlobalColor color) : mCurrentPath{ path }, mRadius{ radius }, mColor{ color }, mCurrentPoint{0}
+WorkingMaterial::WorkingMaterial(std::shared_ptr<Path> path, int radius, Qt::GlobalColor color) : mCurrentPath{ path }, mRadius{ radius }, mColor{ color }, mCurrentPoint{0}
 {
 	mPos = mCurrentPath->getPoint(mCurrentPoint);
 }

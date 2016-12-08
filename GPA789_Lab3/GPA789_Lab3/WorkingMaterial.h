@@ -2,6 +2,7 @@
 #define WORKINGMATERIAL_H
 
 #include <QGraphicsItem>
+#include <memory>
 
 #include "Path.h"
 
@@ -9,7 +10,7 @@ class WorkingMaterial : public QGraphicsItem
 {
 public:
 	WorkingMaterial() = delete;
-	WorkingMaterial(Path * path, int radius, Qt::GlobalColor color);
+	WorkingMaterial(std::shared_ptr<Path>, int radius, Qt::GlobalColor color);
 	~WorkingMaterial();
 
 	void updatePos();
@@ -22,7 +23,7 @@ private:
 	int mRadius;
 	int mCurrentPoint;
 	Qt::GlobalColor mColor;
-	Path * mCurrentPath;
+	std::shared_ptr<Path> mCurrentPath;
 };
 
 #endif // WORKINGMATERIAL_H

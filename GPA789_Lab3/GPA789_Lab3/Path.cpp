@@ -29,7 +29,10 @@ void Path::setPath(QPathBuilder const & pathBuilder)
 	}
 }
 
+
 void Path::connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end)
 {
-
+	// Need to check if the connection is possible and logical
+	mBeginStation = begin;
+	mEndStation = end;
 }

@@ -38,7 +38,7 @@ protected:
 	Qt::GlobalColor mColor;
 
 protected slots:
-	virtual void handleWorkingMaterial() {}
+	virtual void handleWorkingMaterial() {} // Will be pure virtual, so must be reimplemented
 
 private:
 	QString mName;

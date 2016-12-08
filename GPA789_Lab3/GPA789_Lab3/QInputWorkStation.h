@@ -6,6 +6,7 @@
 #include "Path.h"
 #include <qtimer>
 #include <qlist>
+#include <memory>
 
 class QInputWorkStation : public QAbstractWorkStation
 {
@@ -23,7 +24,7 @@ private:
 	QTimer * mProductionTimer;
 	QSizeF mProgressBarSize;
 	bool mProgressBarVisible;
-	QList<Path *> mPath; 
+	QList<std::shared_ptr<Path>> mPath; 
 	
 protected slots:
 	virtual void handleWorkingMaterial() override;
