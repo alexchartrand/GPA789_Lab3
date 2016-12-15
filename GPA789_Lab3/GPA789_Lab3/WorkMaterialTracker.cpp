@@ -11,7 +11,7 @@ void WorkMaterialTracker::updateMaterial()
 {
 	for each (WorkingMaterial* mat in mMaterialList)
 	{
-		mat->updatePos();
+		mat->calculPos(mat->miPath, 100);
 	}
 }
 

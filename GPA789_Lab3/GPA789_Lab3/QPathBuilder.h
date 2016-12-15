@@ -16,6 +16,7 @@
 
 #include <QtMath>
 
+
 /// \brief QPathBuilder est une classe utilitaire facilitant la création de trajets.
 ///
 /// \details Cette classe donne accès à plusieurs outils et mécanismes permettant la construiction d'un trajet.
@@ -458,6 +459,8 @@ public:
 	/// \return Retourne vrai si les paramètres d'entrées sont valides.
 	bool addSShape(qreal length1, qreal length2, qreal length3, qreal height, qreal minArcLength, bool turnRight = true);
 
+
+	void setentrypoint(QPoint pos);
 
 	//bool addOffset
 	//  ----------\

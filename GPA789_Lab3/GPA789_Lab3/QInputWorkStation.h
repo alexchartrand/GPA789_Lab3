@@ -19,12 +19,13 @@ public:
 	void enableProgressBar(bool en) { mProgressBarVisible = en; }
 
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+	QList<Path *> mPath;
 
 private:
 	QTimer * mProductionTimer;
 	QSizeF mProgressBarSize;
 	bool mProgressBarVisible;
-	QList<std::shared_ptr<Path>> mPath; 
+	//QList<std::shared_ptr<Path>> mPath; //En commentaire pour test
 	
 protected slots:
 	virtual void handleWorkingMaterial() override;

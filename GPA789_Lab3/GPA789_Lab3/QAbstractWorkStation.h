@@ -23,8 +23,8 @@ public:
 	void setColor(Qt::GlobalColor c) { mColor = c; }
 	void setWorkingSpeed(qreal & speed) { mWorkingSpeed = static_cast<int>(1 / speed * 1000); } // item per seconde
 	qreal workingSpeed() { return 1 / (static_cast<qreal>(mWorkingSpeed) / 1000); }
-	QPoint getCenter() { return QPoint(mPos.x() + mSize.width(), mPos.y() + mSize.height()); }
-	void setByCenter(QPoint & pos) { mPos.setX(pos.x() - mSize.width()); mPos.setY(pos.y() - mSize.height()); }
+	QPoint getCenter() { return QPoint(mPos.x() + mSize.width()/2, mPos.y() + mSize.height()/2); }
+	void setByCenter(QPoint & pos) { mPos.setX(pos.x() - mSize.width()/2); mPos.setY(pos.y() - mSize.height()/2); }
 
 	QRectF boundingRect() const override { return QRectF(mPos, mSize); }
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;

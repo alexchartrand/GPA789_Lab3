@@ -10,6 +10,8 @@
 #include <qgraphicsscene>
 #include <qgraphicsitem>
 #include <qtimer>
+#include <qlabel>
+#include <qgroupbox>
 
 class GPA789_Lab3 : public QMainWindow
 {
@@ -24,13 +26,20 @@ private:
 	QInteractiveGraphicsView * mView;
 	QGraphicsScene * mScene;
 	QTimer * mRepaintTimer;
+	QSlider * mSliderSpeed;
+	QLabel * mSliderSpeedTitle;
+	QLabel * mSliderSpeedValue;
 	
 	WorkMaterialTracker * mTracker;
 
 	void testFunction(); // will be deleted
+	void add(QGroupBox * groupBox, QLabel * & title, QString const & titleText, QWidget * widget, QLabel * & value);
+	void add(QGroupBox * groupBox, QLabel * & title, QString const & titleText, QWidget * widget);
+
 
 private slots:
 	void repaintTick();
+	void changeSpeedIntervall();
 };
 
 #endif // GPA789_LAB3_H
