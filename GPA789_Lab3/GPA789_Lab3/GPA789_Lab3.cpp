@@ -32,7 +32,7 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	QHBoxLayout * mainHLayout = new QHBoxLayout;
 	mainHLayout->addWidget(mView);
 	mSliderSpeed = new QSlider;			mSliderSpeed->setOrientation(Qt::Horizontal);		mSliderSpeed->setRange(1, 250);
-	QGroupBox * groupBoxSimParam = new QGroupBox("Paramètres de simulation");
+	QGroupBox * groupBoxSimParam = new QGroupBox("ParamÃ¨tres de simulation");
 	QVBoxLayout * controlsLayout = new QVBoxLayout;
 	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse Path (m/sec)", mSliderSpeed, mSliderSpeedValue);
 	controlsLayout->addWidget(groupBoxSimParam);
@@ -92,7 +92,7 @@ void GPA789_Lab3::testFunction()
 	//Path1
 	pathBuilder.setentrypoint(inputA->getCenter());
 	pathBuilder.addLinear(205);
-	pathBuilder.addLShape(95.0, 285.0, 75.0, 7, true);
+	pathBuilder.addLShape(95.0, 290.0, 75.0, 7, true);
 	auto path1 = std::make_shared<Path>(20.0, pathBuilder);
 	QPolygonF shape1 = path1->getShape();
 	mPathList.append(path1);
@@ -126,7 +126,7 @@ void GPA789_Lab3::testFunction()
 	pathBuilder.setentrypoint(inputB->getCenter());
 	pathBuilder.addLinearOffsetAngle(170, 180);
 	pathBuilder.addLShape(100.0, 100.0, 75.0, 7, true);
-	pathBuilder.addLShape(100.0, 235.0, 75.0, 7, false);
+	pathBuilder.addLShape(100.0, 225.0, 75.0, 7, false);
 	auto path5 = std::make_shared<Path>(20.0, pathBuilder);
 	QPolygonF shape5 = path5->getShape();
 	mPathList.append(path5);
@@ -213,6 +213,8 @@ void GPA789_Lab3::changeNameItem()
 
 void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
 {
+	itemSelect = mView->itemAt(mouseEvent->pos());
+	//itemSelect = mScene->itemAt(mouseEvent->pos(), QTransform());
 
 	for (int i = 0; i < ListItemScene.size(); i++)
 	{
@@ -227,13 +229,4 @@ void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
 		}
 	}
 
-}
-
-void GPA789_Lab3::mouseMoveEvent(QMouseEvent * mouseEvent)
-{
-	for (int i = 0; i < ListItemScene.size(); i++)
-	{
-		if (ListItemScene.at(i)->contains(mouseEvent->pos()))
-			itemSelect = ListItemScene.at(i);
-	}
 }
