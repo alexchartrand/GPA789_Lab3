@@ -54,7 +54,6 @@ private slots:
 
 protected :
 	virtual void mousePressEvent(QMouseEvent * mouseEvent) override;
-	virtual void mouseMoveEvent(QMouseEvent * mouseEvent) override;
 };
 
 #endif // GPA789_LAB3_H
