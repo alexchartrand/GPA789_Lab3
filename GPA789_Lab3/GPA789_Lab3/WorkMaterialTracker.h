@@ -12,9 +12,10 @@ class WorkMaterialTracker : public QObject
 	Q_OBJECT
 
 public:
-	WorkMaterialTracker(QGraphicsScene * scene) : mScene{ scene } {}
+	WorkMaterialTracker() = default;
 	~WorkMaterialTracker();
 
+	void addScene(QGraphicsScene * scene);
 	void updateMaterial();
 	void addMaterial(WorkingMaterial * material);
 	void deleteMaterial(WorkingMaterial * material);

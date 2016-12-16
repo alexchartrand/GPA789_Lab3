@@ -14,7 +14,7 @@
 #include <qlabel>
 #include <qgroupbox>
 #include <QGraphicsSceneMouseEvent>
-#include <Path.h>
+#include "Path.h"
 
 
 class GPA789_Lab3 : public QMainWindow
@@ -34,12 +34,12 @@ private:
 	QSlider * mSliderSpeed;
 	QLabel * mSliderSpeedTitle;
 	QLabel * mSliderSpeedValue;
-	WorkMaterialTracker * mTracker;
+	WorkMaterialTracker mTracker;
 	QGraphicsItem * itemSelect;
 	QList<QGraphicsItem *> ListItemScene;
 	QLabel * nomItem;
-	Path * mPathSelected;
-	QList<Path *> mPathList;
+	std::shared_ptr<Path> mPathSelected;
+	QList<std::shared_ptr<Path>> mPathList;
 	int typeSelectedItem;
 
 	void testFunction(); // will be deleted

@@ -6,12 +6,12 @@ Path::Path(qreal size) : mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ si
 {
 }
 
-Path::Path(qreal size, QPathBuilder const & pathBuilder) : Path(size)
+Path::Path(qreal size, QPathBuilder & pathBuilder) : Path(size)
 {
 	setPath(pathBuilder);
 }
 
-Path::Path(qreal size, QPathBuilder const & pathBuilder, qreal transx, qreal transy) : Path(size)
+Path::Path(qreal size, QPathBuilder & pathBuilder, qreal transx, qreal transy) : Path(size)
 {
 	setPath(pathBuilder);
 }
@@ -20,13 +20,14 @@ Path::~Path()
 {
 }
 
-void Path::setPath(QPathBuilder const & pathBuilder)
+void Path::setPath(QPathBuilder & pathBuilder)
 {
 	if (pathBuilder.isValid()) {
 		mPoints = pathBuilder.points();
 		mVectors = pathBuilder.vectors();
 		mBoundingBox = pathBuilder.boundingBox();
 		mShape = pathBuilder.shape(mSize);
+		pathBuilder.reset();
 	}
 	else
 	{

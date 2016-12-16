@@ -3,7 +3,18 @@
 
 WorkMaterialTracker::~WorkMaterialTracker()
 {
+	for each (WorkingMaterial* mat in mMaterialList)
+	{
+		delete mat;
+	}
+}
 
+void WorkMaterialTracker::addScene(QGraphicsScene * scene)
+{ 
+	if (scene) 
+	{ 
+		mScene = scene; 
+	} 
 }
 
 
@@ -11,7 +22,7 @@ void WorkMaterialTracker::updateMaterial()
 {
 	for each (WorkingMaterial* mat in mMaterialList)
 	{
-		mat->calculPos(mat->miPath, 100);
+		mat->calculPos(mat->miPath, 10);
 	}
 }
 
