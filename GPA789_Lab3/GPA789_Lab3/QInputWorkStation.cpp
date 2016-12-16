@@ -33,8 +33,8 @@ void QInputWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 
 void QInputWorkStation::handleWorkingMaterial()
 {
-		// Create new material
-		for each (std::shared_ptr<Path> path in mPath) {
-			mTracker->addMaterial(new WorkingMaterial(path, 20, Qt::gray));
-		}
+	// Create new material
+	for each (std::shared_ptr<Path> path in mPath) {
+		mTracker->addMaterial(new WorkingMaterial(path, 20, Qt::gray));
+	}
 }

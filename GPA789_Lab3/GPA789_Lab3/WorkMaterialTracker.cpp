@@ -34,6 +34,8 @@ void WorkMaterialTracker::addMaterial(WorkingMaterial * material)
 void WorkMaterialTracker::deleteMaterial(WorkingMaterial * material)
 {
 	if (material) {
+		/* The delete dont work!!!!
+		WHY!!!!!!*/
 		mMaterialList.removeOne(material);
 		mScene->removeItem(material);
 		delete material;

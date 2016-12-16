@@ -77,7 +77,7 @@ void GPA789_Lab3::testFunction()
 	QOutputWorkStation * outputA = new QOutputWorkStation(100, 900, 75, 75, &mTracker);
 	QOutputWorkStation * outputB = new QOutputWorkStation(900, 100, 75, 75, &mTracker);
 
-	QTransformWorkStation * transA = new QTransformWorkStation(400, 400, 75, 75, &mTracker);
+	QOutputWorkStation * transA = new QOutputWorkStation(400, 400, 75, 75, &mTracker);
 	QTransformWorkStation * transB = new QTransformWorkStation(400, 700, 75, 75, &mTracker);
 	
 	
@@ -136,6 +136,7 @@ void GPA789_Lab3::testFunction()
 	path1->connectPath(inputA, transA);
 	inputA->addPath(path1);
 	inputA->setWorkingSpeed(1);
+	transA->addPath(path1);
 
 	path2->connectPath(transA, transB);
 
@@ -145,6 +146,7 @@ void GPA789_Lab3::testFunction()
 
 	path5->connectPath(inputB, transB);
 	inputB->addPath(path5);
+	transB->addPath(path5);
 
 
 	//Draw Path et station
@@ -174,7 +176,7 @@ void GPA789_Lab3::repaintTick()
 {
 	mTracker.updateMaterial();
 
-	mView->update();
+	//mView->update();
 
 	mScene->update();
 }

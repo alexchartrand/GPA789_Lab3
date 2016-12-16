@@ -14,5 +14,7 @@ QOutputWorkStation::~QOutputWorkStation()
 void QOutputWorkStation::handleWorkingMaterial()
 {
 	// Delete material
-
+	for each (std::shared_ptr<Path> path in mPath) {
+		mTracker->deleteMaterial(path->getLastMaterial());
+	}
 }

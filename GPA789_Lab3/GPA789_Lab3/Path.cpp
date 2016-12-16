@@ -1,9 +1,11 @@
 #include "Path.h"
 #include "QAbstractWorkStation.h"
+#include "WorkingMaterial.h"
 
 #include <stdexcept>
+#include <iostream>
 
-Path::Path(qreal size) : mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ size }, mSpeed{10}
+Path::Path(qreal size) : mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ size }, mSpeed{10}, mLastMat{nullptr}
 {
 }
 
@@ -58,7 +60,23 @@ void Path::connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end
 	}
 }
 
-//WorkingMaterial * Path::getLastMaterial()
-//{
-//
-//}
+WorkingMaterial * Path::getLastMaterial()
+{
+	WorkingMaterial * temp = mLastMat;
+	mLastMat = nullptr;
+	return temp;
+}
+
+bool Path::setLastMaterial(WorkingMaterial * mat)
+{
+	if (mLastMat == nullptr)
+	{
+		mLastMat = mat;
+		return true;
+	}
+	else 
+	{
+		std::cout << "Too much material have reach the end of the path";
+		return false;
+	}
+}

@@ -6,8 +6,8 @@
 #include <qpolygon>
 
 #include "QPathBuilder.h"
-//#include "WorkingMaterial.h"
 
+class WorkingMaterial;
 class QAbstractWorkStation;
 
 class Path 
@@ -28,7 +28,8 @@ public:
 	void setSpeed(qreal const & speed) { mSpeed = speed; }
 	const int getSizeVectors() { return mVectors.size() - 1; }
 	QString name() const { return mName; }
-	//WorkingMaterial * getLastMaterial();
+	WorkingMaterial * getLastMaterial();
+	bool setLastMaterial(WorkingMaterial * mat);
 
 private:
 	QList<QPointF> mPoints;
@@ -40,5 +41,6 @@ private:
 	QAbstractWorkStation * mBeginStation;
 	QAbstractWorkStation * mEndStation;
 	QString mName;
+	WorkingMaterial * mLastMat;
 };
 

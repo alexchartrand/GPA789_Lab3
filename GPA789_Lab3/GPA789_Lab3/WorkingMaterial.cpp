@@ -62,6 +62,6 @@ void WorkingMaterial::calculPos(int i)
 		}
 	}
 	else{
-
+		mCurrentPath->setLastMaterial(this);
 	}
 }
