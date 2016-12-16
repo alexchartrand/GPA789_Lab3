@@ -6,7 +6,9 @@
 #include <qpolygon>
 
 #include "QPathBuilder.h"
-#include "QAbstractWorkStation.h"
+//#include "WorkingMaterial.h"
+
+class QAbstractWorkStation;
 
 class Path 
 {
@@ -26,8 +28,7 @@ public:
 	void setSpeed(qreal const & speed) { mSpeed = speed; }
 	const int getSizeVectors() { return mVectors.size() - 1; }
 	QString name() const { return mName; }
-	QAbstractWorkStation * getEndStation() {return mEndStation;}
-	QAbstractWorkStation * getBeginStation() { return mBeginStation; }
+	//WorkingMaterial * getLastMaterial();
 
 private:
 	QList<QPointF> mPoints;

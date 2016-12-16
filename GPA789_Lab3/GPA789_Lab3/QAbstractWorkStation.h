@@ -3,6 +3,8 @@
 
 #include <QGraphicsItem>
 #include <qtimer>
+#include <memory>
+#include "Path.h"
 
 class WorkMaterialTracker;
 
@@ -36,6 +38,9 @@ public:
 	QPoint getCenter() { return QPoint(mPos.x() + mSize.width()/2, mPos.y() + mSize.height()/2); }
 	void setByCenter(QPoint & pos) { mPos.setX(pos.x() - mSize.width()/2); mPos.setY(pos.y() - mSize.height()/2); }
 
+	void addPath(std::shared_ptr<Path> path) { mPath.append(path); }
+	bool isValid() { return mPath.count() > 0 ? true : false; }
+
 	virtual QRectF boundingRect() const override { return QRectF(mPos, mSize); }
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
@@ -47,6 +52,7 @@ protected:
 	QTimer * mProductionTimer;
 	WorkMaterialTracker * mTracker;
 	Qt::GlobalColor mColor;
+	QList<std::shared_ptr<Path>> mPath;
 
 protected slots:
 	virtual void handleWorkingMaterial() {}

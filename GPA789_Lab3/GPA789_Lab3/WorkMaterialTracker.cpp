@@ -19,7 +19,7 @@ void WorkMaterialTracker::updateMaterial()
 {
 	for each (WorkingMaterial* mat in mMaterialList)
 	{
-		mat->calculPos(mat->miPath, 10);
+		mat->calculPos(mat->miPath);
 	}
 }
 

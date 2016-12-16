@@ -2,16 +2,16 @@
 #include "QTransformWorkStation.h"
 #include "QInputWorkStation.h"
 #include "QOutputWorkStation.h"
-#include "QTransformWorkStation.h"
 #include "Path.h"
 #include <qgraphicsscene.h>
-#include <qgraphicsscenemouseevent>
+#include <QGraphicsSceneMouseEvent>
+#include <QMouseEvent>
 
 #include <qlayout>
 #include <qrect>
 #include <memory>
 #include <qgroupBox>
-#include <qevent.h>
+#include <qevent>
 #include <qlabel>
 
 
@@ -92,30 +92,30 @@ void GPA789_Lab3::testFunction()
 	//Path1
 	pathBuilder.setentrypoint(inputA->getCenter());
 	pathBuilder.addLinear(205);
-	pathBuilder.addLShape(95.0, 290.0, 75.0, 7, true);
+	pathBuilder.addLShape(95.0, 300.0, 75.0, 7, true);
 	auto path1 = std::make_shared<Path>(20.0, pathBuilder);
 	QPolygonF shape1 = path1->getShape();
 	mPathList.append(path1);
 
 	//Path2
 	pathBuilder.setentrypoint(transA->getCenter());
-	pathBuilder.addLinearOffsetAngle(270,90);
+	pathBuilder.addLinearOffsetAngle(300,90);
 	auto path2 = std::make_shared<Path>(20.0, pathBuilder);
 	QPolygonF shape2 = path2->getShape();
 	mPathList.append(path2);
 
 	//Path3
 	pathBuilder.setentrypoint(transB->getCenter());
-	pathBuilder.addLinearOffsetAngle(45,90);
+	pathBuilder.addLinearOffsetAngle(40,90);
 	pathBuilder.addCircularRad(160, qDegreesToRadians(90.0), 15);
-	pathBuilder.addLinear(120);
+	pathBuilder.addLinear(140);
 	auto path3 = std::make_shared<Path>(20.0, pathBuilder);
 	QPolygonF shape3 = path3->getShape();
 	mPathList.append(path3);
 	
 	//Path4
 	pathBuilder.setentrypoint(transA->getCenter());
-	pathBuilder.addLinear(100);
+	pathBuilder.addLinear(120);
 	pathBuilder.addLShape(100.0, 200.0, 75.0, 7, false);
 	pathBuilder.addLShape(100.0, 280.0, 75.0, 7, true);
 	auto path4 = std::make_shared<Path>(20.0, pathBuilder);
@@ -124,7 +124,7 @@ void GPA789_Lab3::testFunction()
 
 	//Path5
 	pathBuilder.setentrypoint(inputB->getCenter());
-	pathBuilder.addLinearOffsetAngle(170, 180);
+	pathBuilder.addLinearOffsetAngle(175, 180);
 	pathBuilder.addLShape(100.0, 100.0, 75.0, 7, true);
 	pathBuilder.addLShape(100.0, 225.0, 75.0, 7, false);
 	auto path5 = std::make_shared<Path>(20.0, pathBuilder);
@@ -133,7 +133,6 @@ void GPA789_Lab3::testFunction()
 
 
 	//Connection Path avec Station
-
 	path1->connectPath(inputA, transA);
 	inputA->addPath(path1);
 	inputA->setWorkingSpeed(1);

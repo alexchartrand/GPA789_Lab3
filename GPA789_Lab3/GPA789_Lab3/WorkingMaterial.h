@@ -10,11 +10,11 @@ class WorkingMaterial : public QGraphicsItem
 {
 public:
 	WorkingMaterial() = delete;
-	WorkingMaterial(std::shared_ptr<Path>, int radius, Qt::GlobalColor color);
+	WorkingMaterial(std::shared_ptr<Path> path, int radius, Qt::GlobalColor color);
 	~WorkingMaterial();
 
 	void updatePos();
-	void calculPos(int i, qreal vPath);
+	void calculPos(int i);
 
 	QRectF boundingRect() const override { return QRectF(mPos, QSize(mRadius, mRadius)); }
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;

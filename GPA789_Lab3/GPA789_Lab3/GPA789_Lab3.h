@@ -13,7 +13,8 @@
 #include <qtimer>
 #include <qlabel>
 #include <qgroupbox>
-#include <QGraphicsSceneMouseEvent>
+
+
 #include "Path.h"
 
 

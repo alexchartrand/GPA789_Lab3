@@ -10,11 +10,12 @@ class QOutputWorkStation : public QAbstractWorkStation
 	Q_OBJECT
 
 public:
+	QOutputWorkStation() = delete;
 	QOutputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	~QOutputWorkStation();
 
 private:
-	QList<WorkingMaterial *> mMatList;
+
 
 protected slots :
 	virtual void handleWorkingMaterial() override;

@@ -1,8 +1,9 @@
 #include "Path.h"
+#include "QAbstractWorkStation.h"
 
 #include <stdexcept>
 
-Path::Path(qreal size) : mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ size }
+Path::Path(qreal size) : mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ size }, mSpeed{10}
 {
 }
 
@@ -39,6 +40,25 @@ void Path::setPath(QPathBuilder & pathBuilder)
 void Path::connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end)
 {
 	// Need to check if the connection is possible and logical
-	mBeginStation = begin;
-	mEndStation = end;
+	if (mPoints.first() == begin->getCenter())
+	{
+		mBeginStation = begin;
+	}
+	else
+	{
+		throw std::logic_error("The path must connect with the begin station");
+	}
+	if (mPoints.last() == end->getCenter())
+	{
+		mEndStation = end;
+	}
+	else
+	{
+		throw std::logic_error("The path must connect with the end station");
+	}
 }
+
+//WorkingMaterial * Path::getLastMaterial()
+//{
+//
+//}

@@ -27,9 +27,9 @@ void WorkingMaterial::updatePos()
 	mPos.setX(mPos.x() + 1); // to be deleted
 }
 
-void WorkingMaterial::calculPos(int i, qreal vPath)
+void WorkingMaterial::calculPos(int i)
 {
-
+	qreal vPath = mCurrentPath->getSpeed();
 	int sizevect = mCurrentPath->getSizeVectors();
 
 	if (i <= sizevect)
@@ -58,7 +58,7 @@ void WorkingMaterial::calculPos(int i, qreal vPath)
 			mPos.setY(mPos.y() + (lenght*sin(angle)));
 			distvnp = 0;
 			miPath++;
-			calculPos(miPath, vPath);
+			calculPos(miPath);
 		}
 	}
 	else{
