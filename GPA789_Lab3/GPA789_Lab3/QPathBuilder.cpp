@@ -525,6 +525,12 @@ bool QPathBuilder::addSShape(qreal length1, qreal length2, qreal length3, qreal 
 	return true;
 }
 
+void QPathBuilder::setentrypoint(QPoint pos)
+{
+	mPoints[0].setX(pos.x());
+	mPoints[0].setY(pos.y());
+}
+
 
 
 

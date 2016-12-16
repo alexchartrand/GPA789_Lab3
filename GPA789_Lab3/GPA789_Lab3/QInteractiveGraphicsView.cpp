@@ -277,7 +277,7 @@ void QInteractiveGraphicsView::mousePressEvent(QMouseEvent * event)
 	setInteractiveRefPos(event->pos());
 
 	mPersistentInteractionMode = PersistentInteractionMode::None;
-	//if (scene()->itemAt(mCurrentMousePos, transform()) == nullptr) {
+	if (scene()->itemAt(mCurrentMousePos, transform()) == nullptr) {
 		switch (event->buttons()) {
 			case Qt::LeftButton:
 				switch (event->modifiers()) {
@@ -304,7 +304,7 @@ void QInteractiveGraphicsView::mousePressEvent(QMouseEvent * event)
 				}
 				break;
 		}
-	//}
+	}
 
 	QGraphicsView::mousePressEvent(event);
 }

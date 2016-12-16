@@ -11,6 +11,11 @@ Path::Path(qreal size, QPathBuilder const & pathBuilder) : Path(size)
 	setPath(pathBuilder);
 }
 
+Path::Path(qreal size, QPathBuilder const & pathBuilder, qreal transx, qreal transy) : Path(size)
+{
+	setPath(pathBuilder);
+}
+
 Path::~Path()
 {
 }
