@@ -1,6 +1,7 @@
 #ifndef GPA789_LAB3_H
 #define GPA789_LAB3_H
 
+
 #include <QtWidgets/QMainWindow>
 #include "ui_GPA789_Lab3.h"
 #include "QPathBuilder.h"
@@ -12,6 +13,9 @@
 #include <qtimer>
 #include <qlabel>
 #include <qgroupbox>
+#include <QGraphicsSceneMouseEvent>
+#include <Path.h>
+
 
 class GPA789_Lab3 : public QMainWindow
 {
@@ -21,6 +25,7 @@ public:
 	GPA789_Lab3(QWidget *parent = 0);
 	~GPA789_Lab3();
 
+
 private:
 	Ui::GPA789_Lab3Class ui;
 	QInteractiveGraphicsView * mView;
@@ -29,8 +34,13 @@ private:
 	QSlider * mSliderSpeed;
 	QLabel * mSliderSpeedTitle;
 	QLabel * mSliderSpeedValue;
-	
 	WorkMaterialTracker * mTracker;
+	QGraphicsItem * itemSelect;
+	QList<QGraphicsItem *> ListItemScene;
+	QLabel * nomItem;
+	Path * mPathSelected;
+	QList<Path *> mPathList;
+	int typeSelectedItem;
 
 	void testFunction(); // will be deleted
 	void add(QGroupBox * groupBox, QLabel * & title, QString const & titleText, QWidget * widget, QLabel * & value);
@@ -40,6 +50,11 @@ private:
 private slots:
 	void repaintTick();
 	void changeSpeedIntervall();
+	void changeNameItem();
+
+protected :
+	virtual void mousePressEvent(QMouseEvent * mouseEvent) override;
+	virtual void mouseMoveEvent(QMouseEvent * mouseEvent) override;
 };
 
 #endif // GPA789_LAB3_H
