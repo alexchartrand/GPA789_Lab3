@@ -7,7 +7,7 @@
 QInputWorkStation::QInputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
 	: QAbstractWorkStation(x, y, width, height, tracker), mProgressBarSize(qFloor(0.8*width), 10), mProgressBarVisible{true}
 {
-	mProductionTimer = new QTimer;
+	mProductionTimer = new QTimer(this);
 
 	connect(mProductionTimer, SIGNAL(timeout()),
 		this, SLOT(handleWorkingMaterial));
@@ -17,7 +17,7 @@ QInputWorkStation::QInputWorkStation(int x, int y, int width, int height, WorkMa
 
 QInputWorkStation::~QInputWorkStation()
 {
-	delete mProductionTimer;
+
 }
 
 void QInputWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

@@ -17,6 +17,8 @@ public:
 	~QInputWorkStation();
 
 	void enableProgressBar(bool en) { mProgressBarVisible = en; }
+	void addPath(std::shared_ptr<Path> path) { mPath.append(path); }
+	bool isValid() { return mPath.count() > 0 ? true : false; }
 
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
