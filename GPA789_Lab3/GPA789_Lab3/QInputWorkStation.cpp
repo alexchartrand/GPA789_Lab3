@@ -7,11 +7,6 @@
 QInputWorkStation::QInputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
 	: QAbstractWorkStation(x, y, width, height, tracker), mProgressBarSize(qFloor(0.8*width), 10), mProgressBarVisible{true}
 {
-	mProductionTimer = new QTimer(this);
-
-	connect(mProductionTimer, &QTimer::timeout,
-		this, &QInputWorkStation::handleWorkingMaterial);
-	mProductionTimer->start(mWorkingSpeed);
 
 }
 

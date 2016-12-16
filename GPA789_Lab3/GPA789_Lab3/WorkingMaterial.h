@@ -28,6 +28,7 @@ private:
 	
 	Qt::GlobalColor mColor;
 	std::shared_ptr<Path> mCurrentPath;
+
 };
 
 #endif // WORKINGMATERIAL_H

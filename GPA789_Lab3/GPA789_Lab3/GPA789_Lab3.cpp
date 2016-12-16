@@ -136,6 +136,7 @@ void GPA789_Lab3::testFunction()
 
 	path1->connectPath(inputA, transA);
 	inputA->addPath(path1);
+	inputA->setWorkingSpeed(1);
 
 	path2->connectPath(transA, transB);
 

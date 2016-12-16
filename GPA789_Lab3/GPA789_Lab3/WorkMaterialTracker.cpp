@@ -3,10 +3,7 @@
 
 WorkMaterialTracker::~WorkMaterialTracker()
 {
-	for each (WorkingMaterial* mat in mMaterialList)
-	{
-		delete mat;
-	}
+
 }
 
 void WorkMaterialTracker::addScene(QGraphicsScene * scene)

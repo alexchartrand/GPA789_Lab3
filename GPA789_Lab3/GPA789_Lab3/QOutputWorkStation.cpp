@@ -10,3 +10,11 @@ QOutputWorkStation::~QOutputWorkStation()
 {
 
 }
+
+void QOutputWorkStation::handleWorkingMaterial()
+{
+	// Delete material
+	for each (WorkingMaterial * mat in mMatList) {
+		mTracker->deleteMaterial(mat);
+	}
+}

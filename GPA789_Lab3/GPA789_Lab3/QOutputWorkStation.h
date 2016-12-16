@@ -3,6 +3,7 @@
 
 #include "QAbstractWorkStation.h"
 #include "WorkMaterialTracker.h"
+#include "WorkingMaterial.h"
 
 class QOutputWorkStation : public QAbstractWorkStation
 {
@@ -13,7 +14,10 @@ public:
 	~QOutputWorkStation();
 
 private:
-	
+	QList<WorkingMaterial *> mMatList;
+
+protected slots :
+	virtual void handleWorkingMaterial() override;
 };
 
 #endif // QOUTPUTWORKSTATION_H

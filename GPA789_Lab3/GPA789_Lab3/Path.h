@@ -26,6 +26,8 @@ public:
 	void setSpeed(qreal const & speed) { mSpeed = speed; }
 	const int getSizeVectors() { return mVectors.size() - 1; }
 	QString name() const { return mName; }
+	QAbstractWorkStation * getEndStation() {return mEndStation;}
+	QAbstractWorkStation * getBeginStation() { return mBeginStation; }
 
 private:
 	QList<QPointF> mPoints;

@@ -10,6 +10,12 @@ QAbstractWorkStation::QAbstractWorkStation(int x, int y, int width, int height, 
 	setByCenter(QPoint(x, y));
 	mColor = Qt::blue;
 	mWorkingSpeed = 3000;
+
+	mProductionTimer = new QTimer(this);
+
+	connect(mProductionTimer, &QTimer::timeout,
+		this, &QAbstractWorkStation::handleWorkingMaterial);
+	mProductionTimer->start(mWorkingSpeed);
 }
 
 QAbstractWorkStation::~QAbstractWorkStation()

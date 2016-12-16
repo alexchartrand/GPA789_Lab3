@@ -14,7 +14,8 @@ public:
 
 
 private:
-	
+	//QOutputWorkStation mOutStation;
+	//QInputWorkStation mInStation;
 };
 
 #endif // QTRANSFORMWORKSTATION_H

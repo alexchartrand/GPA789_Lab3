@@ -4,7 +4,6 @@
 #include "QAbstractWorkStation.h"
 #include "WorkMaterialTracker.h"
 #include "Path.h"
-#include <qtimer>
 #include <qlist>
 #include <memory>
 
@@ -21,13 +20,13 @@ public:
 	bool isValid() { return mPath.count() > 0 ? true : false; }
 
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-	//QList<Path *> mPath;
+	virtual QRectF boundingRect() const override { return QRectF(mPos.x(), mPos.y()-20, mSize.width(), mSize.height()+20); }
 
 private:
-	QTimer * mProductionTimer;
+	
 	QSizeF mProgressBarSize;
 	bool mProgressBarVisible;
-	QList<std::shared_ptr<Path>> mPath; //En commentaire pour test
+	QList<std::shared_ptr<Path>> mPath;
 	
 protected slots:
 	virtual void handleWorkingMaterial() override;
