@@ -74,8 +74,8 @@ void GPA789_Lab3::testFunction()
 {
 
 	//Creation des station
-	QInputWorkStation * inputA = new QInputWorkStation("InputA", 100, 100, 75, 75, &mTracker);
-	QInputWorkStation * inputB = new QInputWorkStation("InputB", 900, 900, 75, 75, &mTracker);
+	QInputWorkStation * inputA = new QInputWorkStation("InputA", 100, 100, 75, 75, Qt::gray, &mTracker);
+	QInputWorkStation * inputB = new QInputWorkStation("InputB", 900, 900, 75, 75, Qt::yellow, &mTracker);
 
 	QOutputWorkStation * outputA = new QOutputWorkStation("OutputA", 100, 900, 75, 75, &mTracker);
 	QOutputWorkStation * outputB = new QOutputWorkStation("OutputB", 900, 100, 75, 75, &mTracker);

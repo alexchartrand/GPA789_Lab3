@@ -13,16 +13,13 @@ class QAbstractWorkStation : public QObject,  public QGraphicsItem
 	Q_INTERFACES(QGraphicsItem)
 
 public:
-	enum { Type = UserType + 1 };
+	enum { Type = UserType + 2 };
 
-	int type() const
-	{
-		// Enable the use of qgraphicsitem_cast with this item.
-		return Type;
-	}
 	QAbstractWorkStation() = delete;
 	QAbstractWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	virtual ~QAbstractWorkStation();
+
+	virtual int type() const override { return Type; }
 
 	// getter, setter
 	void setSize(int width, int height) { mSize.setWidth(width); mSize.setHeight(height); }

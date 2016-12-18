@@ -12,7 +12,7 @@ class QInputWorkStation : public QAbstractWorkStation
 	Q_OBJECT
 
 public:
-	QInputWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker);
+	QInputWorkStation(QString name, int x, int y, int width, int height, Qt::GlobalColor matColor, WorkMaterialTracker * tracker);
 	~QInputWorkStation();
 
 	void enableProgressBar(bool en) { mProgressBarVisible = en; }
@@ -23,7 +23,7 @@ public:
 private:
 	QSizeF mProgressBarSize;
 	bool mProgressBarVisible;
-	
+	Qt::GlobalColor mMatColor;
 	
 protected slots:
 	virtual void handleWorkingMaterial() override;

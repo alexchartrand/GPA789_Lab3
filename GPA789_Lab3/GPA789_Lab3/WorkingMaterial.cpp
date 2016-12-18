@@ -15,53 +15,71 @@ WorkingMaterial::~WorkingMaterial()
 
 void WorkingMaterial::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	painter->setPen(mColor);
-	painter->setBrush(Qt::black);
-	painter->setBackground(Qt::black);
+	painter->setPen(Qt::black);
+	painter->setBrush(mColor);
+	painter->setBackground(mColor);
 	painter->drawEllipse(mPos, mRadius, mRadius);
 }
 
-void WorkingMaterial::updatePos()
+QPainterPath WorkingMaterial::shape() const
 {
-
-	mPos.setX(mPos.x() + 1); // to be deleted
+	QPainterPath path;
+	path.addEllipse(boundingRect());
+	return path;
 }
 
 void WorkingMaterial::calculPos(int i)
 {
 	qreal vPath = mCurrentPath->getSpeed();
 	int sizevect = mCurrentPath->getSizeVectors();
+	bool collision = false;
+	QList<QGraphicsItem *> collideList = collidingItems(Qt::IntersectsItemBoundingRect);
+	
+	/* Ca ne marche pas et je sais pas trop quoi faire pour les collision...
+	   C'est vraiment long et complexe faire quelque chose qui fonctionne*/
+	//for each(QGraphicsItem * i in collideList)
+	//{
+	//	int type = i->type();
+	//	if (type == UserType + 1)
+	//	{
+	//		collision = true;
+	//		break;
+	//	}
+	//}
 
-	if (i <= sizevect)
+	if (!collision)
 	{
+		if (i <= sizevect)
+		{
 
-		qreal lenght = mCurrentPath->getVectorsDist(i);
-		qreal angle = mCurrentPath->getVectorsRad(i);
+			qreal lenght = mCurrentPath->getVectorsDist(i);
+			qreal angle = mCurrentPath->getVectorsRad(i);
 
-		if (distvnp > 0) {
-			lenght = distvnp;
-		}
+			if (distvnp > 0) {
+				lenght = distvnp;
+			}
 
-		if (vPath <= lenght) {
-			mPos.setX(mPos.x() + (vPath*cos(angle)));
-			mPos.setY(mPos.y() + (vPath*sin(angle)));
-			distvnp = lenght - vPath;
-			if (lenght == vPath) {
-				miPath++;
+			if (vPath <= lenght) {
+				mPos.setX(mPos.x() + (vPath*cos(angle)));
+				mPos.setY(mPos.y() + (vPath*sin(angle)));
+				distvnp = lenght - vPath;
+				if (lenght == vPath) {
+					miPath++;
+					distvnp = 0;
+				}
+			}
+
+			else if (vPath > lenght) {
+				vPath = vPath - lenght;
+				mPos.setX(mPos.x() + (lenght*cos(angle)));
+				mPos.setY(mPos.y() + (lenght*sin(angle)));
 				distvnp = 0;
+				miPath++;
+				calculPos(miPath);
 			}
 		}
-
-		else if (vPath > lenght) {
-			vPath = vPath - lenght;
-			mPos.setX(mPos.x() + (lenght*cos(angle)));
-			mPos.setY(mPos.y() + (lenght*sin(angle)));
-			distvnp = 0;
-			miPath++;
-			calculPos(miPath);
+		else {
+			mCurrentPath->setLastMaterial(this);
 		}
-	}
-	else{
-		mCurrentPath->setLastMaterial(this);
 	}
 }
