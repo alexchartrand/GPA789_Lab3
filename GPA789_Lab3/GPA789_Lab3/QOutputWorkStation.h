@@ -11,7 +11,7 @@ class QOutputWorkStation : public QAbstractWorkStation
 
 public:
 	QOutputWorkStation() = delete;
-	QOutputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker);
+	QOutputWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	~QOutputWorkStation();
 
 private:

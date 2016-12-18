@@ -9,7 +9,6 @@
 
 #include <qlayout>
 #include <qrect>
-#include <memory>
 #include <qgroupBox>
 #include <qevent>
 #include <qlabel>
@@ -65,20 +64,24 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 
 GPA789_Lab3::~GPA789_Lab3()
 {
+	for each(Path * path in mPathList)
+	{
+		delete path;
+	}
 }
 
 void GPA789_Lab3::testFunction()
 {
 
 	//Creation des station
-	QInputWorkStation * inputA = new QInputWorkStation(100, 100, 75, 75, &mTracker);
-	QInputWorkStation * inputB = new QInputWorkStation(900, 900, 75, 75, &mTracker);
+	QInputWorkStation * inputA = new QInputWorkStation("InputA", 100, 100, 75, 75, &mTracker);
+	QInputWorkStation * inputB = new QInputWorkStation("InputB", 900, 900, 75, 75, &mTracker);
 
-	QOutputWorkStation * outputA = new QOutputWorkStation(100, 900, 75, 75, &mTracker);
-	QOutputWorkStation * outputB = new QOutputWorkStation(900, 100, 75, 75, &mTracker);
+	QOutputWorkStation * outputA = new QOutputWorkStation("OutputA", 100, 900, 75, 75, &mTracker);
+	QOutputWorkStation * outputB = new QOutputWorkStation("OutputB", 900, 100, 75, 75, &mTracker);
 
-	QOutputWorkStation * transA = new QOutputWorkStation(400, 400, 75, 75, &mTracker);
-	QTransformWorkStation * transB = new QTransformWorkStation(400, 700, 75, 75, &mTracker);
+	QOutputWorkStation * transA = new QOutputWorkStation("TransA", 400, 400, 75, 75, &mTracker);
+	QTransformWorkStation * transB = new QTransformWorkStation("TransB", 400, 700, 75, 75, &mTracker);
 	
 	
 	QBrush greenBrush(Qt::green);
@@ -93,14 +96,14 @@ void GPA789_Lab3::testFunction()
 	pathBuilder.setentrypoint(inputA->getCenter());
 	pathBuilder.addLinear(205);
 	pathBuilder.addLShape(95.0, 300.0, 75.0, 7, true);
-	auto path1 = std::make_shared<Path>(20.0, pathBuilder);
+	Path * path1 = new Path(20.0, pathBuilder);
 	QPolygonF shape1 = path1->getShape();
 	mPathList.append(path1);
 
 	//Path2
 	pathBuilder.setentrypoint(transA->getCenter());
 	pathBuilder.addLinearOffsetAngle(300,90);
-	auto path2 = std::make_shared<Path>(20.0, pathBuilder);
+	Path * path2 = new Path(20.0, pathBuilder);
 	QPolygonF shape2 = path2->getShape();
 	mPathList.append(path2);
 
@@ -109,7 +112,7 @@ void GPA789_Lab3::testFunction()
 	pathBuilder.addLinearOffsetAngle(40,90);
 	pathBuilder.addCircularRad(160, qDegreesToRadians(90.0), 15);
 	pathBuilder.addLinear(140);
-	auto path3 = std::make_shared<Path>(20.0, pathBuilder);
+	Path * path3 = new Path(20.0, pathBuilder);
 	QPolygonF shape3 = path3->getShape();
 	mPathList.append(path3);
 	
@@ -118,7 +121,7 @@ void GPA789_Lab3::testFunction()
 	pathBuilder.addLinear(120);
 	pathBuilder.addLShape(100.0, 200.0, 75.0, 7, false);
 	pathBuilder.addLShape(100.0, 280.0, 75.0, 7, true);
-	auto path4 = std::make_shared<Path>(20.0, pathBuilder);
+	Path * path4 = new Path(20.0, pathBuilder);
 	QPolygonF shape4 = path4->getShape();
 	mPathList.append(path4);
 
@@ -127,16 +130,14 @@ void GPA789_Lab3::testFunction()
 	pathBuilder.addLinearOffsetAngle(175, 180);
 	pathBuilder.addLShape(100.0, 100.0, 75.0, 7, true);
 	pathBuilder.addLShape(100.0, 225.0, 75.0, 7, false);
-	auto path5 = std::make_shared<Path>(20.0, pathBuilder);
+	Path * path5 = new Path(20.0, pathBuilder);
 	QPolygonF shape5 = path5->getShape();
 	mPathList.append(path5);
 
 
 	//Connection Path avec Station
 	path1->connectPath(inputA, transA);
-	inputA->addPath(path1);
-	inputA->setWorkingSpeed(1);
-	transA->addPath(path1);
+	inputA->setWorkingSpeed(0.5);
 
 	path2->connectPath(transA, transB);
 
@@ -145,8 +146,6 @@ void GPA789_Lab3::testFunction()
 	path4->connectPath(transA, outputB);
 
 	path5->connectPath(inputB, transB);
-	inputB->addPath(path5);
-	transB->addPath(path5);
 
 
 	//Draw Path et station

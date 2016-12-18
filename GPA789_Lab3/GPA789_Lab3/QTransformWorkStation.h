@@ -9,7 +9,7 @@ class QTransformWorkStation : public QAbstractWorkStation
 	Q_OBJECT
 
 public:
-	QTransformWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker);
+	QTransformWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	~QTransformWorkStation();
 
 

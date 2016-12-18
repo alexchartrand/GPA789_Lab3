@@ -12,7 +12,7 @@ class QInputWorkStation : public QAbstractWorkStation
 	Q_OBJECT
 
 public:
-	QInputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker);
+	QInputWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	~QInputWorkStation();
 
 	void enableProgressBar(bool en) { mProgressBarVisible = en; }

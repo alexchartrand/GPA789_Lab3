@@ -23,12 +23,12 @@ void WorkMaterialTracker::updateMaterial()
 	}
 }
 
-void WorkMaterialTracker::addMaterial(WorkingMaterial * material)
+void WorkMaterialTracker::addMaterial(Path * path, int radius, Qt::GlobalColor color)
 {
-	if (material) {
-		mMaterialList.append(material);
-		mScene->addItem(material);
-	}
+	WorkingMaterial * mat = new WorkingMaterial(path, radius, color);
+	mMaterialList.append(mat);
+	mScene->addItem(mat);
+
 }
 
 void WorkMaterialTracker::deleteMaterial(WorkingMaterial * material)
@@ -37,7 +37,7 @@ void WorkMaterialTracker::deleteMaterial(WorkingMaterial * material)
 		/* The delete dont work!!!!
 		WHY!!!!!!*/
 		mMaterialList.removeOne(material);
-		mScene->removeItem(material);
+		//mScene->removeItem(material);
 		delete material;
 	}
 }

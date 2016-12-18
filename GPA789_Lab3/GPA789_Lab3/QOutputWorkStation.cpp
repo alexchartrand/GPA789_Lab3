@@ -1,7 +1,7 @@
 #include "QOutputWorkStation.h"
 
-QOutputWorkStation::QOutputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
-	: QAbstractWorkStation(x, y, width, height, tracker)
+QOutputWorkStation::QOutputWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker)
+	: QAbstractWorkStation(name, x, y, width, height, tracker)
 {
 
 }
@@ -14,7 +14,7 @@ QOutputWorkStation::~QOutputWorkStation()
 void QOutputWorkStation::handleWorkingMaterial()
 {
 	// Delete material
-	for each (std::shared_ptr<Path> path in mPath) {
+	for each (Path * path in mPath) {
 		mTracker->deleteMaterial(path->getLastMaterial());
 	}
 }

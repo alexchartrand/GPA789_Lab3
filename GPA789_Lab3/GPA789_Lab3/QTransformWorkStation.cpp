@@ -2,8 +2,8 @@
 
 #include <QPainter>
 
-QTransformWorkStation::QTransformWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
-	: QAbstractWorkStation(x, y, width, height, tracker)
+QTransformWorkStation::QTransformWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker)
+	: QAbstractWorkStation(name, x, y, width, height, tracker)
 {
 
 }

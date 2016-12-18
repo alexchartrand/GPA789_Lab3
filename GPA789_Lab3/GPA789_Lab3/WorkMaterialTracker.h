@@ -17,7 +17,7 @@ public:
 
 	void addScene(QGraphicsScene * scene);
 	void updateMaterial();
-	void addMaterial(WorkingMaterial * material);
+	void addMaterial(Path * path, int radius, Qt::GlobalColor color);
 	void deleteMaterial(WorkingMaterial * material);
 
 private:

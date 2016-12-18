@@ -45,6 +45,7 @@ void Path::connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end
 	if (mPoints.first() == begin->getCenter())
 	{
 		mBeginStation = begin;
+		begin->addPath(this);
 	}
 	else
 	{
@@ -53,6 +54,7 @@ void Path::connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end
 	if (mPoints.last() == end->getCenter())
 	{
 		mEndStation = end;
+		end->addPath(this);
 	}
 	else
 	{

@@ -39,8 +39,8 @@ private:
 	QGraphicsItem * itemSelect;
 	QList<QGraphicsItem *> ListItemScene;
 	QLabel * nomItem;
-	std::shared_ptr<Path> mPathSelected;
-	QList<std::shared_ptr<Path>> mPathList;
+	Path * mPathSelected;
+	QList<Path *> mPathList;
 	int typeSelectedItem;
 
 	void testFunction(); // will be deleted

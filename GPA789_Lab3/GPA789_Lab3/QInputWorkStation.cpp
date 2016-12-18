@@ -4,8 +4,8 @@
 #include <QtCore\qmath.h>
 #include <qpainter>
 
-QInputWorkStation::QInputWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
-	: QAbstractWorkStation(x, y, width, height, tracker), mProgressBarSize(qFloor(0.8*width), 10), mProgressBarVisible{true}
+QInputWorkStation::QInputWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker)
+	: QAbstractWorkStation(name, x, y, width, height, tracker), mProgressBarSize(qFloor(0.8*width), 10), mProgressBarVisible{true}
 {
 
 }
@@ -34,7 +34,7 @@ void QInputWorkStation::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 void QInputWorkStation::handleWorkingMaterial()
 {
 	// Create new material
-	for each (std::shared_ptr<Path> path in mPath) {
-		mTracker->addMaterial(new WorkingMaterial(path, 20, Qt::gray));
+	for each (Path * path in mPath) {
+		mTracker->addMaterial(path, 20, Qt::gray);
 	}
 }

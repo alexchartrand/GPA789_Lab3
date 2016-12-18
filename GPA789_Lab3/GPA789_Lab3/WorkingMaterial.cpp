@@ -3,14 +3,14 @@
 #include <qpainter>
 #include <qcolor.h>
 
-WorkingMaterial::WorkingMaterial(std::shared_ptr<Path> path, int radius, Qt::GlobalColor color) : mCurrentPath{ path }, mRadius{ radius }, mColor{ color }, mCurrentPoint{0}
+WorkingMaterial::WorkingMaterial(Path * path, int radius, Qt::GlobalColor color) : QGraphicsItem(), mCurrentPath{ path }, mRadius{ radius }, mColor{ color }, mCurrentPoint{0}
 {
 	mPos = mCurrentPath->getPoint(mCurrentPoint);
 }
 
 WorkingMaterial::~WorkingMaterial()
 {
-
+	
 }
 
 void WorkingMaterial::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

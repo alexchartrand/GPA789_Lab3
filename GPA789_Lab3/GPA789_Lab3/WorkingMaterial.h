@@ -10,7 +10,7 @@ class WorkingMaterial : public QGraphicsItem
 {
 public:
 	WorkingMaterial() = delete;
-	WorkingMaterial(std::shared_ptr<Path> path, int radius, Qt::GlobalColor color);
+	WorkingMaterial(Path * path, int radius, Qt::GlobalColor color);
 	~WorkingMaterial();
 
 	void updatePos();
@@ -27,7 +27,7 @@ private:
 	qreal distvnp = 0;
 	
 	Qt::GlobalColor mColor;
-	std::shared_ptr<Path> mCurrentPath;
+	Path * mCurrentPath;
 
 };
 

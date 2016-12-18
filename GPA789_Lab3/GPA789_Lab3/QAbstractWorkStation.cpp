@@ -4,12 +4,12 @@
 
 #include "WorkMaterialTracker.h"
 
-QAbstractWorkStation::QAbstractWorkStation(int x, int y, int width, int height, WorkMaterialTracker * tracker)
-	: QGraphicsItem(), mSize(width, height), mTracker{ tracker }
+QAbstractWorkStation::QAbstractWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker)
+	: QGraphicsItem(), mSize(width, height), mTracker{ tracker }, mName{name}
 {
 	setByCenter(QPoint(x, y));
 	mColor = Qt::blue;
-	mWorkingSpeed = 3000;
+	mWorkingSpeed = 1000;
 
 	mProductionTimer = new QTimer(this);
 
