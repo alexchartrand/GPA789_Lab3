@@ -104,8 +104,8 @@ void GPA789_Lab3::testFunction()
 	QOutputWorkStation * outputA = new QOutputWorkStation("OutputA", 100, 900, 75, 75, &mTracker);
 	QOutputWorkStation * outputB = new QOutputWorkStation("OutputB", 900, 100, 75, 75, &mTracker);
 
-	QTransformWorkStation * transA = new QTransformWorkStation("transA", 400, 400, 75, 75, &mTracker);
-	QTransformWorkStation * transB = new QTransformWorkStation("transB", 400, 700, 75, 75, &mTracker);
+	QTransformWorkStation * transA = new QTransformWorkStation("transA", 400, 400, 75, 75, Qt::magenta, &mTracker);
+	QTransformWorkStation * transB = new QTransformWorkStation("transB", 400, 700, 75, 75, Qt::green, &mTracker);
 	
 	
 	QBrush greenBrush(Qt::green);
