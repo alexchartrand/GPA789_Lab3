@@ -14,7 +14,8 @@
 #include <qlabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-
+#include <QPushButton>
+#include <qmessagebox>
 
 
 GPA789_Lab3::GPA789_Lab3(QWidget *parent)
@@ -35,6 +36,8 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	mainHLayout->addWidget(mView);
 	mSliderSpeed = new QSlider;			mSliderSpeed->setOrientation(Qt::Horizontal);		mSliderSpeed->setRange(0, 10);
 	QGroupBox * groupBoxSimParam = new QGroupBox("Paramètres de simulation");
+	QGroupBox * groupBoxSimInfo = new QGroupBox("Informations de simulation");
+	QPushButton *aboutButton = new QPushButton("À propos...");
 	groupBoxSimParam->setLayout(new QVBoxLayout);
 	QVBoxLayout * controlsLayout = new QVBoxLayout;
 	nomItem = new QLabel("Selectionner un item.");				nomItem->setAlignment(Qt::AlignLeft);
@@ -44,6 +47,9 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse (m/sec)", mSliderSpeed, mSliderSpeedValue);
 	controlsLayout->addWidget(groupBoxSimParam);
 	controlsLayout->addStretch(1);
+	controlsLayout->addWidget(groupBoxSimInfo);
+	controlsLayout->addStretch(1);
+	controlsLayout->addWidget(aboutButton);
 	
 	QWidget * controlsWidget = new QWidget;
 	controlsWidget->setLayout(controlsLayout);
@@ -66,6 +72,9 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 
 	connect(mSliderSpeed, &QSlider::valueChanged, 
 		this, &GPA789_Lab3::changeSpeedIntervall);
+
+	connect(aboutButton, &QPushButton::clicked,
+		this, &GPA789_Lab3::showMessageBox);
 
 	//Affichage
 
@@ -229,5 +238,30 @@ void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
 		mSliderSpeed->setValue(mPathSelected->getSpeed());
 		
 	}
+
+}
+
+void GPA789_Lab3::showMessageBox()
+{
+	//QPixmap image = QPixmap("Resource/icon.png");
+
+
+	QMessageBox  about;
+	//about.setIconPixmap(image);
+	about.setWindowTitle("À propos de Sim2000");
+	//about.setWindowIcon(image);
+	about.setText(R"#(Sim2000 est un simulateur d'usine.
+
+Ce programme a été réalisé par :
+- Alexandre Chratrand
+- Jérôme Combet-Blanc
+
+Dans le cadre du cours :
+- GPA 789 - Analyse et conception orientées objet
+- Laboratoire 3
+
+Version 1.0)#");
+
+	about.exec();
 
 }

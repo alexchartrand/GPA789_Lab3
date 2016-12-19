@@ -49,6 +49,7 @@ private:
 	void testFunction(); // will be deleted
 	void add(QGroupBox * groupBox, QLabel * & title, QString const & titleText, QWidget * widget, QLabel * & value);
 	void add(QGroupBox * groupBox, QLabel * & title, QString const & titleText, QWidget * widget);
+	void showMessageBox();
 
 
 private slots:
