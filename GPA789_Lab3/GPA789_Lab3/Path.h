@@ -39,8 +39,7 @@ public:
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-	QSizeF mSizeP;
-	QPointF mPosP;
+
 	QList<QPointF> mPoints;
 	QList<QPair<qreal, qreal>> mVectors;
 	QRectF mBoundingBox;

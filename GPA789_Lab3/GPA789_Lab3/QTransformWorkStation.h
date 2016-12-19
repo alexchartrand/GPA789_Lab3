@@ -3,6 +3,8 @@
 
 #include "QAbstractWorkStation.h"
 #include "WorkMaterialTracker.h"
+#include "QOutputWorkStation.h"
+#include "QInputWorkStation.h"
 
 class QTransformWorkStation : public QAbstractWorkStation
 {
@@ -11,11 +13,13 @@ class QTransformWorkStation : public QAbstractWorkStation
 public:
 	QTransformWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker);
 	~QTransformWorkStation();
+	QInputWorkStation * getTransIn() { return mInStation; }
+	QOutputWorkStation * getTransOut() { return mOutStation; }
 
 
 private:
-	//QOutputWorkStation mOutStation;
-	//QInputWorkStation mInStation;
+	QOutputWorkStation * mOutStation;
+	QInputWorkStation * mInStation;
 };
 
 #endif // QTRANSFORMWORKSTATION_H

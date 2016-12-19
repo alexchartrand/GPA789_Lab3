@@ -104,8 +104,8 @@ void GPA789_Lab3::testFunction()
 	QOutputWorkStation * outputA = new QOutputWorkStation("OutputA", 100, 900, 75, 75, &mTracker);
 	QOutputWorkStation * outputB = new QOutputWorkStation("OutputB", 900, 100, 75, 75, &mTracker);
 
-	QOutputWorkStation * transA = new QOutputWorkStation("OutputC", 400, 400, 75, 75, &mTracker);
-	QOutputWorkStation * transB = new QOutputWorkStation("OutputD", 400, 700, 75, 75, &mTracker);
+	QTransformWorkStation * transA = new QTransformWorkStation("transA", 400, 400, 75, 75, &mTracker);
+	QTransformWorkStation * transB = new QTransformWorkStation("transB", 400, 700, 75, 75, &mTracker);
 	
 	
 	QBrush greenBrush(Qt::green);
@@ -154,15 +154,15 @@ void GPA789_Lab3::testFunction()
 
 
 	//Connection Path avec Station
-	path1->connectPath(inputA, transA);
+	path1->connectPath(inputA, transA->getTransOut());
 
-	path2->connectPath(transA, transB);
+	path2->connectPath(transA->getTransIn(), transB->getTransOut());
 
-	path3->connectPath(transB, outputA);
+	path3->connectPath(transB->getTransIn(), outputA);
 
-	path4->connectPath(transA, outputB);
+	path4->connectPath(transA->getTransIn(), outputB);
 
-	path5->connectPath(inputB, transB);
+	path5->connectPath(inputB, transB->getTransOut());
 
 
 	//Draw Path et station

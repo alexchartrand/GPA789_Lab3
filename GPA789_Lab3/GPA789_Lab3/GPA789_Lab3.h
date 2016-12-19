@@ -45,7 +45,7 @@ private:
 	Path * mPathSelected;
 	QList<Path *> mPathList;
 	QAbstractWorkStation * mStationSelected;
-	int typeSelectedItem;
+	int mNBMat;
 
 	void testFunction(); // will be deleted
 	void add(QGroupBox * groupBox, QLabel * & title, QString const & titleText, QWidget * widget, QLabel * & value);
