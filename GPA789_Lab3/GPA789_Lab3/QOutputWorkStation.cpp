@@ -15,6 +15,12 @@ void QOutputWorkStation::handleWorkingMaterial()
 {
 	// Delete material
 	for each (Path * path in mPath) {
-		mTracker->deleteMaterial(path->getLastMaterial());
+		WorkingMaterial * mat = path->getLastMaterial();
+		if (mat)
+		{
+			mTracker->deleteMaterial(mat);
+			mNumberOfItem++;
+			emit nbItemChanged(QString::number(mNumberOfItem));
+		}
 	}
 }

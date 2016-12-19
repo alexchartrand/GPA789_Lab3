@@ -5,7 +5,7 @@
 #include "WorkMaterialTracker.h"
 
 QAbstractWorkStation::QAbstractWorkStation(QString name, int x, int y, int width, int height, WorkMaterialTracker * tracker)
-	: QGraphicsItem(), mSize(width, height), mTracker{ tracker }, mName{name}
+	: QGraphicsItem(), mSize(width, height), mTracker{ tracker }, mName{name}, mNumberOfItem{0}
 {
 	setByCenter(QPoint(x, y));
 	mColor = Qt::blue;

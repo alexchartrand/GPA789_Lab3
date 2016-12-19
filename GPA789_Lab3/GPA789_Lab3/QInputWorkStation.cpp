@@ -36,5 +36,7 @@ void QInputWorkStation::handleWorkingMaterial()
 	// Create new material
 	for each (Path * path in mPath) {
 		mTracker->addMaterial(path, 20, mMatColor);
+		mNumberOfItem++;
+		emit nbItemChanged(QString::number(mNumberOfItem));
 	}
 }

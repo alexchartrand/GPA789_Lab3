@@ -27,6 +27,7 @@ public:
 	void setPosition(int x, int y) { mPos.setX(x); mPos.setY(y); }
 	QPointF Position() const { return mPos; }
 	QString name() const { return mName; }
+	int numberOfItem() const { return mNumberOfItem; }
 	void setColor(Qt::GlobalColor c) { mColor = c; }
 	void setWorkingSpeed(qreal speed) { mWorkingSpeed = static_cast<int>(1 / speed * 1000); mProductionTimer->start(mWorkingSpeed);} // item per seconde
 	qreal workingSpeed() { return 1 / (static_cast<qreal>(mWorkingSpeed) / 1000); }
@@ -39,11 +40,15 @@ public:
 	virtual QRectF boundingRect() const override { return QRectF(mPos, mSize); }
 	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+signals:
+	void nbItemChanged(const QString & nb);
+
 protected:
 	QSizeF mSize;
 	QPointF mPos;
 	bool mRunning;
 	int mWorkingSpeed; // Delta t in ms
+	int mNumberOfItem;
 	QTimer * mProductionTimer;
 	WorkMaterialTracker * mTracker;
 	Qt::GlobalColor mColor;

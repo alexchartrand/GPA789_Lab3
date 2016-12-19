@@ -41,6 +41,7 @@ private:
 	QList<QGraphicsItem *> ListItemScene;
 	QLabel * nomItem;
 	QLabel * nNMItem;
+	QLabel * mNbItems;
 	Path * mPathSelected;
 	QList<Path *> mPathList;
 	QAbstractWorkStation * mStationSelected;

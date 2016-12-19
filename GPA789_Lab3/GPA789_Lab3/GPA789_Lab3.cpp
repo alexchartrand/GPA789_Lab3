@@ -39,12 +39,16 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	QGroupBox * groupBoxSimInfo = new QGroupBox("Informations de simulation");
 	QPushButton *aboutButton = new QPushButton("À propos...");
 	groupBoxSimParam->setLayout(new QVBoxLayout);
+	groupBoxSimInfo->setLayout(new QHBoxLayout);
+	mNbItems = new QLabel;
+	groupBoxSimInfo->layout()->addWidget(new QLabel("Nombre d'item: "));
+	groupBoxSimInfo->layout()->addWidget(mNbItems);
 	QVBoxLayout * controlsLayout = new QVBoxLayout;
 	nomItem = new QLabel("Selectionner un item.");				nomItem->setAlignment(Qt::AlignLeft);
 	nNMItem = new QLabel;										nNMItem->setAlignment(Qt::AlignLeft);
 	groupBoxSimParam->layout()->addWidget(nomItem);
 	groupBoxSimParam->layout()->addWidget(nNMItem);
-	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse (m/sec)", mSliderSpeed, mSliderSpeedValue);
+	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse (item/sec)", mSliderSpeed, mSliderSpeedValue);
 	controlsLayout->addWidget(groupBoxSimParam);
 	controlsLayout->addStretch(1);
 	controlsLayout->addWidget(groupBoxSimInfo);
@@ -63,7 +67,7 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 
 	setCentralWidget(mainWidget);
 	
-	mRepaintTimer = new QTimer;
+	mRepaintTimer = new QTimer(this);
 
 
 	//Connect
@@ -151,7 +155,6 @@ void GPA789_Lab3::testFunction()
 
 	//Connection Path avec Station
 	path1->connectPath(inputA, transA);
-	inputA->setWorkingSpeed(0.5);
 
 	path2->connectPath(transA, transB);
 
@@ -215,6 +218,7 @@ void GPA789_Lab3::changeSpeedIntervall()
 	{
 		mStationSelected->setWorkingSpeed(mSliderSpeed->value());
 		mSliderSpeedValue->setText(QString("%1").arg(mStationSelected->workingSpeed()));
+
 	}
 	if ((mPathSelected = dynamic_cast<Path*>(itemSelect)))
 	{
@@ -225,18 +229,27 @@ void GPA789_Lab3::changeSpeedIntervall()
 
 void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
 {
+	static bool itemSlotConnected = false;
+	if (itemSlotConnected)
+	{
+		disconnect(mStationSelected, &QAbstractWorkStation::nbItemChanged,
+			mNbItems, &QLabel::setText);
+		mNbItems->clear();
+		itemSlotConnected = false;
+	}
 	itemSelect = mView->itemAt(mouseEvent->pos());
 	if ((mStationSelected = dynamic_cast<QAbstractWorkStation*>(itemSelect)))
 	{
 		nomItem->setText(mStationSelected->name());
 		mSliderSpeed->setValue(mStationSelected->workingSpeed());
-
+		QMetaObject::Connection con = connect(mStationSelected, &QAbstractWorkStation::nbItemChanged,
+			mNbItems, &QLabel::setText);
+		itemSlotConnected = con;
 	}
 	if ((mPathSelected = dynamic_cast<Path*>(itemSelect)))
 	{
 		nomItem->setText(mPathSelected->name());
 		mSliderSpeed->setValue(mPathSelected->getSpeed());
-		
 	}
 
 }
