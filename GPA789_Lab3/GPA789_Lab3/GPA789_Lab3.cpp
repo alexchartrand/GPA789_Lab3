@@ -12,6 +12,8 @@
 #include <qgroupBox>
 #include <qevent>
 #include <qlabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 
 
@@ -25,6 +27,7 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	mView = new QInteractiveGraphicsView(mScene); 
 	mTracker.addScene(mScene);
 
+	//Creation de l'usine
 	testFunction();
 
 	//Controleur
@@ -32,16 +35,21 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	mainHLayout->addWidget(mView);
 	mSliderSpeed = new QSlider;			mSliderSpeed->setOrientation(Qt::Horizontal);		mSliderSpeed->setRange(0, 10);
 	QGroupBox * groupBoxSimParam = new QGroupBox("Paramètres de simulation");
+	groupBoxSimParam->setLayout(new QVBoxLayout);
 	QVBoxLayout * controlsLayout = new QVBoxLayout;
-	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse Path (m/sec)", mSliderSpeed, mSliderSpeedValue);
+	nomItem = new QLabel("Selectionner un item.");				nomItem->setAlignment(Qt::AlignLeft);
+	nNMItem = new QLabel;										nNMItem->setAlignment(Qt::AlignLeft);
+	groupBoxSimParam->layout()->addWidget(nomItem);
+	groupBoxSimParam->layout()->addWidget(nNMItem);
+	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse (m/sec)", mSliderSpeed, mSliderSpeedValue);
 	controlsLayout->addWidget(groupBoxSimParam);
+	controlsLayout->addStretch(1);
+	
 	QWidget * controlsWidget = new QWidget;
 	controlsWidget->setLayout(controlsLayout);
 	controlsWidget->setFixedWidth(250);
 	mainHLayout->addWidget(controlsWidget);
-	nomItem = new QLabel;
-	nomItem->setText("Selectionner un Item");
-	controlsLayout->addWidget(nomItem);
+	
 
 	QWidget * mainWidget = new QWidget;
 	mainWidget->setLayout(mainHLayout);
@@ -51,14 +59,15 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	
 	mRepaintTimer = new QTimer;
 
+
+	//Connect
 	connect(mRepaintTimer, &QTimer::timeout,
 		this, &GPA789_Lab3::repaintTick);
 
 	connect(mSliderSpeed, &QSlider::valueChanged, 
 		this, &GPA789_Lab3::changeSpeedIntervall);
 
-	//connect(nomItem, &QLabel::selectedText,
-	//	this, &GPA789_Lab3::changeNameItem);
+	//Affichage
 
 	mRepaintTimer->start(33);
 	mView->show();
@@ -193,12 +202,16 @@ void GPA789_Lab3::add(QGroupBox * groupBox, QLabel * & title, QString const & ti
 
 void GPA789_Lab3::changeSpeedIntervall()
 {
-	mStationSelected->setWorkingSpeed(mSliderSpeed->value());
-}
-
-void GPA789_Lab3::changeNameItem()
-{
-	nomItem->setText(mStationSelected->name());
+	if ((mStationSelected = dynamic_cast<QAbstractWorkStation*>(itemSelect)))
+	{
+		mStationSelected->setWorkingSpeed(mSliderSpeed->value());
+		mSliderSpeedValue->setText(QString("%1").arg(mStationSelected->workingSpeed()));
+	}
+	if ((mPathSelected = dynamic_cast<Path*>(itemSelect)))
+	{
+		mPathSelected->setSpeed(mSliderSpeed->value());
+		mSliderSpeedValue->setText(QString("%1").arg(mPathSelected->getSpeed()));
+	}
 }
 
 void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
@@ -208,10 +221,13 @@ void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
 	{
 		nomItem->setText(mStationSelected->name());
 		mSliderSpeed->setValue(mStationSelected->workingSpeed());
+
 	}
 	if ((mPathSelected = dynamic_cast<Path*>(itemSelect)))
 	{
 		nomItem->setText(mPathSelected->name());
+		mSliderSpeed->setValue(mPathSelected->getSpeed());
+		
 	}
 
 }

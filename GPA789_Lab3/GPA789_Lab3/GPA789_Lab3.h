@@ -40,6 +40,7 @@ private:
 	QGraphicsItem * itemSelect;
 	QList<QGraphicsItem *> ListItemScene;
 	QLabel * nomItem;
+	QLabel * nNMItem;
 	Path * mPathSelected;
 	QList<Path *> mPathList;
 	QAbstractWorkStation * mStationSelected;
@@ -53,7 +54,6 @@ private:
 private slots:
 	void repaintTick();
 	void changeSpeedIntervall();
-	void changeNameItem();
 
 protected :
 	virtual void mousePressEvent(QMouseEvent * mouseEvent) override;
