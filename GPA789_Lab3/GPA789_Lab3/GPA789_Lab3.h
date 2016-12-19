@@ -16,6 +16,7 @@
 
 
 #include "Path.h"
+#include "QAbstractWorkStation.h"
 
 
 class GPA789_Lab3 : public QMainWindow
@@ -41,6 +42,7 @@ private:
 	QLabel * nomItem;
 	Path * mPathSelected;
 	QList<Path *> mPathList;
+	QAbstractWorkStation * mStationSelected;
 	int typeSelectedItem;
 
 	void testFunction(); // will be deleted

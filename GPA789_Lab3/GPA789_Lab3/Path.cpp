@@ -4,17 +4,19 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <qpainter>
 
-Path::Path(qreal size) : mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ size }, mSpeed{10}, mLastMat{nullptr}
+Path::Path(QString name,qreal size) : QGraphicsItem(), mBeginStation{nullptr}, mEndStation{nullptr}, mSize{ size }, mSpeed{10}, mLastMat{nullptr}, mName{ name }
 {
+	
 }
 
-Path::Path(qreal size, QPathBuilder & pathBuilder) : Path(size)
+Path::Path(QString name, qreal size, QPathBuilder & pathBuilder) : Path(name, size)
 {
 	setPath(pathBuilder);
 }
 
-Path::Path(qreal size, QPathBuilder & pathBuilder, qreal transx, qreal transy) : Path(size)
+Path::Path(QString name, qreal size, QPathBuilder & pathBuilder, qreal transx, qreal transy) : Path(name, size)
 {
 	setPath(pathBuilder);
 }
@@ -81,4 +83,13 @@ bool Path::setLastMaterial(WorkingMaterial * mat)
 		std::cout << "Too much material have reach the end of the path";
 		return false;
 	}
+}
+
+void Path::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+	painter->setPen(QPen(Qt::black));
+	painter->setBrush(QBrush(Qt::black, Qt::SolidPattern));
+	QPainterPath mPaintPath;
+	mPaintPath.addPolygon(mShape);
+	painter->drawPath(mPaintPath);
 }

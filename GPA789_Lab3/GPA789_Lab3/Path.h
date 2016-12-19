@@ -7,16 +7,20 @@
 
 #include "QPathBuilder.h"
 
+#include <QGraphicsItem>
+
 class WorkingMaterial;
 class QAbstractWorkStation;
 
-class Path 
+class Path :public QObject, public QGraphicsItem
 {
+	Q_OBJECT
+	Q_INTERFACES(QGraphicsItem)
 public:
 	Path() = delete;
-	Path(qreal size);
-	Path(qreal size, QPathBuilder & pathBuilder);
-	Path(qreal size, QPathBuilder & pathBuilder, qreal transx, qreal transy);
+	Path(QString name, qreal size);
+	Path(QString name, qreal size, QPathBuilder & pathBuilder);
+	Path(QString name, qreal size, QPathBuilder & pathBuilder, qreal transx, qreal transy);
 	~Path();
 	void setPath(QPathBuilder & pathBuilder);
 	void connectPath(QAbstractWorkStation * begin, QAbstractWorkStation  * end);
@@ -31,7 +35,12 @@ public:
 	WorkingMaterial * getLastMaterial();
 	bool setLastMaterial(WorkingMaterial * mat);
 
+	virtual QRectF boundingRect() const override { return QRectF(mShape.boundingRect()); }
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
 private:
+	QSizeF mSizeP;
+	QPointF mPosP;
 	QList<QPointF> mPoints;
 	QList<QPair<qreal, qreal>> mVectors;
 	QRectF mBoundingBox;
@@ -40,7 +49,10 @@ private:
 	qreal mSpeed;
 	QAbstractWorkStation * mBeginStation;
 	QAbstractWorkStation * mEndStation;
-	QString mName;
 	WorkingMaterial * mLastMat;
+	QPainterPath * mPaintPath;
+
+private:
+	QString mName;
 };
 

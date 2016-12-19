@@ -30,7 +30,7 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	//Controleur
 	QHBoxLayout * mainHLayout = new QHBoxLayout;
 	mainHLayout->addWidget(mView);
-	mSliderSpeed = new QSlider;			mSliderSpeed->setOrientation(Qt::Horizontal);		mSliderSpeed->setRange(1, 250);
+	mSliderSpeed = new QSlider;			mSliderSpeed->setOrientation(Qt::Horizontal);		mSliderSpeed->setRange(0, 10);
 	QGroupBox * groupBoxSimParam = new QGroupBox("Paramètres de simulation");
 	QVBoxLayout * controlsLayout = new QVBoxLayout;
 	add(groupBoxSimParam, mSliderSpeedTitle, "Vitesse Path (m/sec)", mSliderSpeed, mSliderSpeedValue);
@@ -40,6 +40,8 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	controlsWidget->setFixedWidth(250);
 	mainHLayout->addWidget(controlsWidget);
 	nomItem = new QLabel;
+	nomItem->setText("Selectionner un Item");
+	controlsLayout->addWidget(nomItem);
 
 	QWidget * mainWidget = new QWidget;
 	mainWidget->setLayout(mainHLayout);
@@ -55,8 +57,8 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 	connect(mSliderSpeed, &QSlider::valueChanged, 
 		this, &GPA789_Lab3::changeSpeedIntervall);
 
-	connect(nomItem, &QLabel::selectedText,
-		this, &GPA789_Lab3::changeNameItem);
+	//connect(nomItem, &QLabel::selectedText,
+	//	this, &GPA789_Lab3::changeNameItem);
 
 	mRepaintTimer->start(33);
 	mView->show();
@@ -96,43 +98,37 @@ void GPA789_Lab3::testFunction()
 	pathBuilder.setentrypoint(inputA->getCenter());
 	pathBuilder.addLinear(205);
 	pathBuilder.addLShape(95.0, 300.0, 75.0, 7, true);
-	Path * path1 = new Path(20.0, pathBuilder);
-	QPolygonF shape1 = path1->getShape();
-	mPathList.append(path1);
+	Path * path1 = new Path("path1",20.0, pathBuilder);
 
 	//Path2
 	pathBuilder.setentrypoint(transA->getCenter());
 	pathBuilder.addLinearOffsetAngle(300,90);
-	Path * path2 = new Path(20.0, pathBuilder);
-	QPolygonF shape2 = path2->getShape();
-	mPathList.append(path2);
+	Path * path2 = new Path("path2", 20.0, pathBuilder);
+
 
 	//Path3
 	pathBuilder.setentrypoint(transB->getCenter());
 	pathBuilder.addLinearOffsetAngle(40,90);
 	pathBuilder.addCircularRad(160, qDegreesToRadians(90.0), 15);
 	pathBuilder.addLinear(140);
-	Path * path3 = new Path(20.0, pathBuilder);
-	QPolygonF shape3 = path3->getShape();
-	mPathList.append(path3);
+	Path * path3 = new Path("path3", 20.0, pathBuilder);
+
 	
 	//Path4
 	pathBuilder.setentrypoint(transA->getCenter());
 	pathBuilder.addLinear(120);
 	pathBuilder.addLShape(100.0, 200.0, 75.0, 7, false);
 	pathBuilder.addLShape(100.0, 280.0, 75.0, 7, true);
-	Path * path4 = new Path(20.0, pathBuilder);
-	QPolygonF shape4 = path4->getShape();
-	mPathList.append(path4);
+	Path * path4 = new Path("path4", 20.0, pathBuilder);
+
 
 	//Path5
 	pathBuilder.setentrypoint(inputB->getCenter());
 	pathBuilder.addLinearOffsetAngle(175, 180);
 	pathBuilder.addLShape(100.0, 100.0, 75.0, 7, true);
 	pathBuilder.addLShape(100.0, 225.0, 75.0, 7, false);
-	Path * path5 = new Path(20.0, pathBuilder);
-	QPolygonF shape5 = path5->getShape();
-	mPathList.append(path5);
+	Path * path5 = new Path("path5", 20.0, pathBuilder);
+
 
 
 	//Connection Path avec Station
@@ -149,11 +145,11 @@ void GPA789_Lab3::testFunction()
 
 
 	//Draw Path et station
-	mScene->addPolygon(shape1, outlinePen, blueBrush);
-	mScene->addPolygon(shape2, outlinePen, greenBrush);
-	mScene->addPolygon(shape3, outlinePen, blueBrush);
-	mScene->addPolygon(shape4, outlinePen, greenBrush);
-	mScene->addPolygon(shape5, outlinePen, blueBrush);
+	mScene->addItem(path1);
+	mScene->addItem(path2);
+	mScene->addItem(path3);
+	mScene->addItem(path4);
+	mScene->addItem(path5);
 
 	mScene->addItem(inputA);
 	mScene->addItem(inputB);
@@ -161,13 +157,6 @@ void GPA789_Lab3::testFunction()
 	mScene->addItem(outputB);
 	mScene->addItem(transA);
 	mScene->addItem(transB);
-
-	ListItemScene.append(inputA);
-	ListItemScene.append(inputB);
-	ListItemScene.append(outputA);
-	ListItemScene.append(outputB);
-	ListItemScene.append(transA);
-	ListItemScene.append(transB);
 
 }
 
@@ -204,30 +193,25 @@ void GPA789_Lab3::add(QGroupBox * groupBox, QLabel * & title, QString const & ti
 
 void GPA789_Lab3::changeSpeedIntervall()
 {
-
+	mStationSelected->setWorkingSpeed(mSliderSpeed->value());
 }
 
 void GPA789_Lab3::changeNameItem()
 {
-	
+	nomItem->setText(mStationSelected->name());
 }
 
 void GPA789_Lab3::mousePressEvent(QMouseEvent * mouseEvent)
 {
 	itemSelect = mView->itemAt(mouseEvent->pos());
-	//itemSelect = mScene->itemAt(mouseEvent->pos(), QTransform());
-
-	for (int i = 0; i < ListItemScene.size(); i++)
+	if ((mStationSelected = dynamic_cast<QAbstractWorkStation*>(itemSelect)))
 	{
-		if (ListItemScene.at(i)->contains(mouseEvent->pos()))
-		{
-			itemSelect = ListItemScene.at(i);
-			if (itemSelect->type()==5)
-			{
-				mPathSelected = mPathList.at(i);
-			}
-			typeSelectedItem = itemSelect->type();
-		}
+		nomItem->setText(mStationSelected->name());
+		mSliderSpeed->setValue(mStationSelected->workingSpeed());
+	}
+	if ((mPathSelected = dynamic_cast<Path*>(itemSelect)))
+	{
+		nomItem->setText(mPathSelected->name());
 	}
 
 }
