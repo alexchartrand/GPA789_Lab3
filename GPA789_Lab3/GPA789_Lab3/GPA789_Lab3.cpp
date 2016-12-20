@@ -88,10 +88,7 @@ GPA789_Lab3::GPA789_Lab3(QWidget *parent)
 
 GPA789_Lab3::~GPA789_Lab3()
 {
-	for each(Path * path in mPathList)
-	{
-		delete path;
-	}
+
 }
 
 void GPA789_Lab3::testFunction()

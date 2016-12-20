@@ -13,6 +13,14 @@ QTransformWorkStation::QTransformWorkStation(QString name, int x, int y, int wid
 
 QTransformWorkStation::~QTransformWorkStation()
 {
+	// Est-ce que c'est nécessaire ou ils sont des enfants de qTransformWorkstation
+	// donc, ils vont être suprimés par la scene??
+	delete mOutStation;
+	delete mInStation;
+}
+
+void QTransformWorkStation::handleWorkingMaterial()
+{
 
 }
 

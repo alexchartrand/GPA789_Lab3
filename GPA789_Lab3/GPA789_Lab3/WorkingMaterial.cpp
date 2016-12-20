@@ -36,7 +36,9 @@ void WorkingMaterial::calculPos(int i)
 	QList<QGraphicsItem *> collideList = collidingItems(Qt::IntersectsItemBoundingRect);
 	
 	/* Ca ne marche pas et je sais pas trop quoi faire pour les collision...
-	   C'est vraiment long et complexe faire quelque chose qui fonctionne*/
+		je dois détecter si la collision provient d'une particule en avant ou en arrière
+		avant de bloquer le mouvement. Sinon, réaction à chaine et tout jamm. BOUM!
+	*/
 	//for each(QGraphicsItem * i in collideList)
 	//{
 	//	int type = i->type();

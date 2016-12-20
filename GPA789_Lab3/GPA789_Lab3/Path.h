@@ -12,10 +12,9 @@
 class WorkingMaterial;
 class QAbstractWorkStation;
 
-class Path :public QObject, public QGraphicsItem
+class Path : public QGraphicsItem
 {
-	Q_OBJECT
-	Q_INTERFACES(QGraphicsItem)
+
 public:
 	Path() = delete;
 	Path(QString name, qreal size);

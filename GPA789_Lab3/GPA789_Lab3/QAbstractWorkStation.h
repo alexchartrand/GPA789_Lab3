@@ -55,7 +55,7 @@ protected:
 	QList<Path *> mPath;
 
 protected slots:
-	virtual void handleWorkingMaterial() {}
+	virtual void handleWorkingMaterial() = 0;
 
 private:
 	QString mName;
